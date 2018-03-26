@@ -21,6 +21,7 @@ public class User {
     }
 
     /*
+    * @param: int idIn is what id is getting set to
     * Setter function for ID
     */
     
@@ -29,6 +30,7 @@ public class User {
     }
 
     /*
+    * @param: int name is what name is getting set to
     * Setter function for Name
     */
     public void setName(String nameIn){
