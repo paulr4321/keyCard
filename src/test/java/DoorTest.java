@@ -68,14 +68,10 @@ class DoorTest
                 assertEquals(true, testDoor.opened, "Door not opened for valid ID");
             }
 
-            assertEquals(false, "11111", "Access permissions incorrect");
-            assertEquals(false, testDoor.opened, "Door opened for invalid ID");
-            assertEquals(false, "60879", "Access permissions incorrect");
-            assertEquals(false, testDoor.opened, "Door opened for invalid ID");
-            assertEquals(false, "30929", "Access permissions incorrect");
-            assertEquals(false, testDoor.opened, "Door opened for invalid ID");
-            assertEquals(false, "00001", "Access permissions incorrect");
-            assertEquals(false, testDoor.opened, "Door opened for invalid ID");
+            assertEquals(false, testDoor.checkUserAccess("11111"), "Access permissions incorrect");
+            assertEquals(false, testDoor.checkUserAccess("60879"), "Access permissions incorrect");
+            assertEquals(false, testDoor.checkUserAccess("30929"), "Access permissions incorrect");
+            assertEquals(false, testDoor.checkUserAccess("00001"), "Access permissions incorrect");
         }
         catch (Exception e)
         {
@@ -87,4 +83,73 @@ class DoorTest
             fail("Exception thrown for valid id.");
         }
     }
+
+    @Test
+    void addUserTest(){
+
+        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+
+        String addedUser = "66600";
+
+        Door testDoor = new Door("0", testUsers);
+
+        boolean found = false;
+
+        testDoor.addUser(addedUser);
+
+        for (int i = 0; i < testDoor.list.size(); i++) {
+            if (addedUser.equals(testDoor.list.get(i))){
+                found = true;
+            }
+        }
+
+        assertEquals(true, found, "Added user was not found in list");
+
+    }
+
+    @Test
+    void removeUserTest(){
+
+        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+
+        String removedUser = "00000";
+
+        Door testDoor = new Door("0", testUsers);
+
+        boolean removed = false;
+
+        testDoor.removeUser(removedUser);
+
+        for (int i = 0; i < testDoor.list.size(); i++) {
+            if (!removedUser.equals(testDoor.list.get(i))){
+                removed = true;
+            }
+        }
+
+        assertEquals(true, removed, "Removed user was still in list");
+
+    }
+
+    @Test
+    void getTest(){
+        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+
+        Door testDoor = new Door("0", testUsers);
+
+        assertEquals("0", testDoor.getID(), "ID retrieved does not match door ID");
+    }
+
+    @Test
+    void setTest(){
+        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+
+        Door testDoor = new Door("0", testUsers);
+
+        String newID = "88899";
+
+        testDoor.setID(newID);
+
+        assertEquals("88899", testDoor.getID(), "New ID does not match door ID");
+    }
+
 }
