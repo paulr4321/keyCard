@@ -30,3 +30,4 @@
 <hr>
 
 <h4>Sprint 1:</h4> Design a door that given a User ID can either grant or deny access. <br>
+<a href="https://drive.google.com/drive/folders/1IeLT6Ca12zxafajWCW21Hy7tHGRwEo28?usp=sharing" target="_blank">Sprint 1 Diagrams</a>
