@@ -1,4 +1,4 @@
-package java;
+package edu.ithaca.group1;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,7 +42,7 @@ class UserTest {
         assertEquals(myName, myUser.getName());
 
         String myName2 = "";
-        myUser.setName(myName);
+        myUser.setName(myName2);
         assertEquals(myName2, myUser.getName());
 
     }
@@ -54,7 +54,7 @@ class UserTest {
         assertEquals(myName, myUser.getName());
 
         String myName2 = "";
-        myUser.setName(myName);
+        myUser.setName(myName2);
         assertEquals(myName2, myUser.getName());
     }
 

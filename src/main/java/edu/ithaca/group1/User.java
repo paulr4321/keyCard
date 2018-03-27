@@ -1,4 +1,4 @@
-package java;
+package edu.ithaca.group1;
 
 public class User {
 

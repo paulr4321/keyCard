@@ -1,6 +1,7 @@
-import org.junit.jupiter.api.Test;
-import java.util.Arrays;
+package edu.ithaca.group1;
 
+
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DoorTest
@@ -25,29 +26,27 @@ class DoorTest
     void checkUserAccessExceptionTest()
     {
         String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        String[] invalidUsers = new String[]{"#0000", "00a00", "1100000", "aaaaa", "", "123456789", "00 00"};
 
         Door testDoor = new Door("0", testUsers);
 
         boolean exceptionCaught = false;
 
-        try
+        for (int i = 0; i < invalidUsers.length; i++)
         {
-            testDoor.checkUserAccess("#0000");
-            testDoor.checkUserAccess("00a00");
-            testDoor.checkUserAccess("1100000");
-            testDoor.checkUserAccess("aaaaa");
-            testDoor.checkUserAccess("");
-            testDoor.checkUserAccess("123456789");
-            testDoor.checkUserAccess("00 00");
-        }
-        catch (Exception e)
-        {
-            exceptionCaught = true;
-        }
-
-        if (!exceptionCaught)
-        {
-            fail("Exception not thrown for invalid ID");
+            exceptionCaught = false;
+            try
+            {
+                testDoor.checkUserAccess(invalidUsers[i]);
+            }
+            catch (Exception e)
+            {
+                exceptionCaught = true;
+            }
+            if (!exceptionCaught)
+            {
+                fail("Exception not thrown for invalid ID");
+            }
         }
     }
 

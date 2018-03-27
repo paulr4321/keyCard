@@ -1,3 +1,5 @@
+package edu.ithaca.group1;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -80,7 +82,7 @@ public class Door {
      */
     public boolean checkUserAccess(String userID) throws Exception
     {
-        if (!userID.matches("[0-9]+") && userID.length() != 5){
+        if (!userID.matches("[0-9]+") || userID.length() != 5){
             throw new Exception("Invalid userId");
         }
 
