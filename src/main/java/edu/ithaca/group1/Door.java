@@ -20,7 +20,7 @@ public class Door {
      * user list with the matching id. If no user is found return -1
      *
      * @param userId id of the user tp search for
-     * @return int represneting index of user, or -1 if none found
+     * @return int representing index of user, or -1 if none found
      */
     private int findUserIndex(String userId)
     {

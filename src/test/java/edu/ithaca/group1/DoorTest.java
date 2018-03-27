@@ -46,7 +46,8 @@ class DoorTest
                         new User("aaaaa", "X"),
                         new User("", "X"),
                         new User("123456789", "X"),
-                        new User("00 00", "X")
+                        new User("00 00", "X"),
+                        new User("1234+", "X")
                 };
 
         Door testDoor = new Door("0", testUsers);
