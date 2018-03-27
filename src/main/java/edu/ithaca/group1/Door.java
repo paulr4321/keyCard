@@ -6,13 +6,31 @@ import java.util.Arrays;
 public class Door {
 
     public boolean opened;
-    public ArrayList<String> list = new ArrayList<String>();
+    public ArrayList<User> list = new ArrayList<User>();
     public String idDoor;
 
-    public Door(String id, String[] userList)
+    public Door(String id, User[] userList)
     {
         list.addAll(Arrays.asList(userList));
         idDoor = id;
+    }
+
+    /**
+     * Takes in a user id and returns the index of that user in door's
+     * user list with the matching id. If no user is found return -1
+     *
+     * @param userId id of the user tp search for
+     * @return int represneting index of user, or -1 if none found
+     */
+    private int findUserIndex(String userId)
+    {
+        for (int i = 0; i < list.size(); i++) {
+            if (userId.equals(list.get(i).getId()))
+            {
+                return i;
+            }
+        }
+        return -1;
     }
 
     /**
@@ -25,22 +43,26 @@ public class Door {
 
     /**
      * Adds a new user to the userList
-     * @param userID id of the user that will be added
+     * @param newUser id of the user that will be added
      * @post ArrayList will increase in size by 1, containing the new user
      */
-    public void addUser(String userID)
+    public void addUser(User newUser)
     {
-        list.add(userID);
+        list.add(newUser);
     }
 
     /**
      * Removes existing user from the userList
-     * @param userID id of the user that will be removed
+     * @param userId id of the user that will be removed
      * @post ArrayList will decrease in size by 1, removing the specified user from the list
      */
-    public void removeUser(String userID)
+    public void removeUser(String userId)
     {
-        list.remove(userID);
+        int idx = findUserIndex(userId);
+        if (idx != -1)
+        {
+            list.remove(idx);
+        }
     }
 
     /**
@@ -69,6 +91,11 @@ public class Door {
      */
     public String getInfo(String userId)
     {
+        int idx = findUserIndex(userId);
+        if (idx != -1)
+        {
+            return list.get(idx).toString();
+        }
         return "";
     }
 
@@ -86,11 +113,10 @@ public class Door {
             throw new Exception("Invalid userId");
         }
 
-        for (int i = 0; i < list.size(); i++) {
-            if (userID.equals(list.get(i))){
-                this.opened = true;
-                return true;
-            }
+        if (findUserIndex(userID) != -1)
+        {
+            grantAccess();
+            return true;
         }
         return false;
     }

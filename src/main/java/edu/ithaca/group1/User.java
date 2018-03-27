@@ -2,14 +2,27 @@ package edu.ithaca.group1;
 
 public class User {
 
-    private int id;
+    private String id;
     private String name;
 
+    /**
+     * Default constructor
+     */
+    public User(){}
 
+    /**
+     * @param id of the user
+     * @param name of the user
+     */
+    public User(String id, String name)
+    {
+        this.id = id;
+        this.name = name;
+    }
     /*
     * Getter function for ID
     */
-    public int getId(){
+    public String getId(){
         return this.id;
     }
 
@@ -24,7 +37,7 @@ public class User {
     * Setter function for ID
     */
     
-    public void setId(int idIn){
+    public void setId(String idIn){
         this.id = idIn;
     }
 
@@ -34,4 +47,14 @@ public class User {
     public void setName(String nameIn){
         this.name = nameIn;
     }
+
+    /**
+     * @return a formatted String representing the properties of this User
+     */
+    public String toString()
+    {
+        String output = "UserId: " + id + "\nName: " + name;
+        return output;
+    }
+
 }

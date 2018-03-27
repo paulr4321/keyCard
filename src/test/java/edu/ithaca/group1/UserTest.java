@@ -13,24 +13,24 @@ class UserTest {
 
     @org.junit.jupiter.api.Test
     void setId() {
-        int myId = 4;
-        myUser.setId(4);
+        String myId = "4";
+        myUser.setId("4");
         assertEquals(myId, myUser.getId());
 
-        int myId2 = 0;
-        myUser.setId(0);
+        String myId2 = "";
+        myUser.setId(myId2);
         assertEquals(myId2, myUser.getId());
 
     }
 
     @org.junit.jupiter.api.Test
     void getId() {
-        int myId = 6;
-        myUser.setId(6);
+        String myId = "6";
+        myUser.setId("6");
         assertEquals(myId, myUser.getId());
 
-        int myId2 = 0;
-        myUser.setId(0);
+        String myId2 = "0";
+        myUser.setId("0");
         assertEquals(myId2, myUser.getId());
 
     }

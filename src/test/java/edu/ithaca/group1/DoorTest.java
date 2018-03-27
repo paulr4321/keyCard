@@ -11,22 +11,43 @@ class DoorTest
     void getInfo()
     {
 
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
         Door testDoor = new Door("0", testUsers);
 
-        for (int i = 0; i < testUsers.length; i++) {
-            String expected = "UserId: " + testUsers[i] + "\nName: Unknown";
-
-            assertEquals(expected, testDoor.getInfo(testUsers[i]), "User Info for user: " + testUsers[i] + "Incorrect");
+        for (int i = 0; i < testUsers.length; i++)
+        {
+            String expected = testUsers[i].toString();
+            assertEquals(expected, testDoor.getInfo(testUsers[i].getId()), "User Info for user: " + testUsers[i] + "Incorrect");
         }
     }
 
     @Test
     void checkUserAccessExceptionTest()
     {
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
-        String[] invalidUsers = new String[]{"#0000", "00a00", "1100000", "aaaaa", "", "123456789", "00 00"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
+        User[] invalidUsers = new User[]
+                {
+                        new User("#0000", "X"),
+                        new User("00a00", "X"),
+                        new User("1100000", "X"),
+                        new User("aaaaa", "X"),
+                        new User("", "X"),
+                        new User("123456789", "X"),
+                        new User("00 00", "X")
+                };
 
         Door testDoor = new Door("0", testUsers);
 
@@ -37,7 +58,7 @@ class DoorTest
             exceptionCaught = false;
             try
             {
-                testDoor.checkUserAccess(invalidUsers[i]);
+                testDoor.checkUserAccess(invalidUsers[i].getId());
             }
             catch (Exception e)
             {
@@ -54,7 +75,13 @@ class DoorTest
     @Test
     void checkUserAccess()
     {
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
         Door testDoor = new Door("0", testUsers);
 
@@ -63,7 +90,7 @@ class DoorTest
         try {
             for (int i = 0; i < testUsers.length; i++) {
 
-                assertEquals(true, testDoor.checkUserAccess(testUsers[i]), "Access permissions incorrect");
+                assertEquals(true, testDoor.checkUserAccess(testUsers[i].getId()), "Access permissions incorrect");
                 assertEquals(true, testDoor.opened, "Door not opened for valid ID");
             }
 
@@ -86,9 +113,15 @@ class DoorTest
     @Test
     void addUserTest(){
 
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
-        String addedUser = "66600";
+        User addedUser = new User("66600", "Bryan");
 
         Door testDoor = new Door("0", testUsers);
 
@@ -109,19 +142,25 @@ class DoorTest
     @Test
     void removeUserTest(){
 
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
         String removedUser = "00000";
 
         Door testDoor = new Door("0", testUsers);
 
-        boolean removed = false;
+        boolean removed = true;
 
         testDoor.removeUser(removedUser);
 
         for (int i = 0; i < testDoor.list.size(); i++) {
-            if (!removedUser.equals(testDoor.list.get(i))){
-                removed = true;
+            if (removedUser.equals(testDoor.list.get(i))){
+                removed = false;
             }
         }
 
@@ -131,7 +170,13 @@ class DoorTest
 
     @Test
     void getTest(){
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
         Door testDoor = new Door("0", testUsers);
 
@@ -140,7 +185,13 @@ class DoorTest
 
     @Test
     void setTest(){
-        String[] testUsers = new String[]{"00000", "70879", "30429", "11293"};
+        User[] testUsers = new User[]
+                {
+                        new User("00000", "X"),
+                        new User("70879", "X"),
+                        new User ("30429", "X"),
+                        new User("11293", "X")
+                };
 
         Door testDoor = new Door("0", testUsers);
 
