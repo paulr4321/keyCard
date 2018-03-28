@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
 
-    private User myUser;
+    private java.User myUser;
 
     @org.junit.jupiter.api.BeforeEach
     void setUp() {
-        myUser = new User();
+        myUser = new java.User();
     }
 
     @org.junit.jupiter.api.Test
