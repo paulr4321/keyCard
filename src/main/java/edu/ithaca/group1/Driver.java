@@ -1,23 +1,15 @@
-package prim;
+package edu.ithaca.group1;
 
-public static void main(String[] args) {
-    
-	User user = new User();
-	Doors doors = new Doors();
-	boolean check;
-	
-	for (int i= 0; i < length; i++){
-		while(door[i]==user.getDoor()){
-			check = door.checkAccess();
-		}
+public class Driver
+{
+	public static void main(String[] args) {
+
+		User user = new User();
+		Door door = new Door("", new User[]{});
+		boolean check;
+
 	}
-	
-	if(check == true){
-		door.open();
-	}
-	else{
-		door.closed();
-	}
-  }
+}
+
 
 
