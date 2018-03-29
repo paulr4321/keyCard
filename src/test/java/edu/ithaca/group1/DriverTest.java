@@ -70,7 +70,7 @@ public class DriverTest
 			}
 		}
 		assertEquals(true, check, "New ID does not match door ID");
-		door.removeUser(Kevin.getId());
+		
 		
 		}
 		
