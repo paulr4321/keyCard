@@ -1,3 +1,5 @@
+package edu.ithaca.group1;
+
 import org.junit.jupiter.api.Test;
 
 
