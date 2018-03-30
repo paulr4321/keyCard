@@ -26,8 +26,10 @@
 <a href="https://waffle.io/paulr4321/keyCard" target="_blank">Waffle Board</a> <br>
 <a href="https://ezclapboyz.slack.com/messages/C9JNNDYH3/" target="_blank">Slack</a> <br>
 <a href="https://docs.google.com/document/d/1GgZdVfYEUbkyT8Jr53fQ21ojwOsOdY-uOHtklbvks50/edit?usp=sharing" target="_blank">Narratives & Scenarios</a> <br>
+<a href="https://discord.gg/WJAECsm">Discord</a> <br>
 
 <hr>
 
 <h4>Sprint 1:</h4> Design a door that given a User ID can either grant or deny access. <br>
-<a href="https://drive.google.com/drive/folders/1IeLT6Ca12zxafajWCW21Hy7tHGRwEo28?usp=sharing" target="_blank">Sprint 1 Diagrams</a>
+<a href="https://drive.google.com/drive/folders/1IeLT6Ca12zxafajWCW21Hy7tHGRwEo28?usp=sharing" target="_blank">Sprint 1 Diagrams</a> <br>
+<a href="https://docs.google.com/document/d/1iCmnYO0t3EkE7W1LOHyIvmM276L2LTNH41HdcP9hfNE/edit?usp=sharing" target="_blank">Sprint Review 1 Agenda</a>
