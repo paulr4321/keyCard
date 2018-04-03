@@ -35,4 +35,4 @@
 <a href="https://docs.google.com/document/d/1iCmnYO0t3EkE7W1LOHyIvmM276L2LTNH41HdcP9hfNE/edit?usp=sharing" target="_blank">Sprint 1 Review Agenda</a> <br>
 <a href="https://docs.google.com/document/d/1Tb0tsgK87yBSG3024-oeEL2KwOporxNpCx1GOIYB81s/edit?usp=sharing" target="_blank">Sprint 1 Review Notes</a> <br>
 
-<h4>Sprint 2:</h4> Multiple views: One for user to request permissions, one for security rep to review requests and approve or deny them, and one for th manager to add approved requests.
+<h4>Sprint 2:</h4> Multiple views: One for user to request permissions, one for security rep to review requests and approve or deny them, and one for the manager to add approved requests.
