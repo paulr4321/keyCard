@@ -1,5 +1,7 @@
 package edu.ithaca.group1;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
@@ -59,6 +61,8 @@ class UserTest {
     }
 
 
-
-
+    @org.junit.jupiter.api.Test
+    void getDepartment() {
+        String myDept = "Comp Sci";
+    }
 }
