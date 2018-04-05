@@ -1,5 +1,6 @@
+![build status](https://circleci.com/gh/paulr4321/keyCard.png?circle-token=circle-token "Master Build Status")
+
 # keyCard
-![build status](https://circleci.com/gh/<paulr4321>/<keyCard>.png?circle-token=circle-token "Master Build Status")
 
 <h3>Professor: Toby Dragon</h3>
 
