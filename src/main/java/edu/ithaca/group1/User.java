@@ -57,4 +57,13 @@ public class User {
         return output;
     }
 
+    public void setDepartment()
+    {
+
+    }
+
+    public String getDepartment()
+    {
+        return "";
+    }
 }
