@@ -11,7 +11,7 @@ public class DriverTest
 
 {
 	@Test
-	public void setupTest(String[] args) throws Exception {
+	public void setupTest() throws Exception {
 
 		String s = null;
 
