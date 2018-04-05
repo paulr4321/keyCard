@@ -13,10 +13,10 @@ class DoorTest
 
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
         Door testDoor = new Door("0", testUsers);
@@ -33,21 +33,21 @@ class DoorTest
     {
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
         User[] invalidUsers = new User[]
                 {
-                        new User("#0000", "X"),
-                        new User("00a00", "X"),
-                        new User("1100000", "X"),
-                        new User("aaaaa", "X"),
-                        new User("", "X"),
-                        new User("123456789", "X"),
-                        new User("00 00", "X"),
-                        new User("1234+", "X")
+                        new User("#0000", "X", ""),
+                        new User("00a00", "X", ""),
+                        new User("1100000", "X", ""),
+                        new User("aaaaa", "X", ""),
+                        new User("", "X", ""),
+                        new User("123456789", "X", ""),
+                        new User("00 00", "X", ""),
+                        new User("1234+", "X", "")
                 };
 
         Door testDoor = new Door("0", testUsers);
@@ -78,10 +78,10 @@ class DoorTest
     {
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
         Door testDoor = new Door("0", testUsers);
@@ -116,13 +116,13 @@ class DoorTest
 
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
-        User addedUser = new User("66600", "Bryan");
+        User addedUser = new User("66600", "Bryan", "");
 
         Door testDoor = new Door("0", testUsers);
 
@@ -145,10 +145,10 @@ class DoorTest
 
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
         String removedUser = "00000";
@@ -173,10 +173,10 @@ class DoorTest
     void getTest(){
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
         Door testDoor = new Door("0", testUsers);
@@ -188,10 +188,10 @@ class DoorTest
     void setTest(){
         User[] testUsers = new User[]
                 {
-                        new User("00000", "X"),
-                        new User("70879", "X"),
-                        new User ("30429", "X"),
-                        new User("11293", "X")
+                        new User("00000", "X", ""),
+                        new User("70879", "X", ""),
+                        new User ("30429", "X", ""),
+                        new User("11293", "X", "")
                 };
 
         Door testDoor = new Door("0", testUsers);

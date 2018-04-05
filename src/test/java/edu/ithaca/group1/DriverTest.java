@@ -15,14 +15,14 @@ public class DriverTest
 
 		String s = null;
 
-		User Paul = new User("12345", "Paul");
-		User Vaseal = new User("54321", "Vaseal");
-		User Ben = new User("12346", "Ben");
-		User Fernando = new User("13456", "Ben");
-		User Kevin = new User("00000", "Kevin");
+		User Paul = new User("12345", "Paul", "");
+		User Vaseal = new User("54321", "Vaseal", "");
+		User Ben = new User("12346", "Ben", "");
+		User Fernando = new User("13456", "Ben", "");
+		User Kevin = new User("00000", "Kevin", "");
 		
-		User Jim = new User("11111", "Jim");
-		User Rob = new User("11112", "Rob");
+		User Jim = new User("11111", "Jim", "");
+		User Rob = new User("11112", "Rob", "");
 		
 		User[] userList = {Paul, Vaseal, Ben, Fernando, Kevin};
 
