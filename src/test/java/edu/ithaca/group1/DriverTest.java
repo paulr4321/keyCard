@@ -34,7 +34,7 @@ public class DriverTest
 		try{
 		    Scanner reader = new Scanner(System.in);  // Reading from System.in
 		    System.out.println("Enter 5 numbers: ");
-		    s = reader.next();
+		    s = "12345"; //reader.next();
 		}
 		
 		catch (NumberFormatException a){
@@ -72,7 +72,7 @@ public class DriverTest
 		}
 		assertEquals(true, check, "New ID does not match door ID");
 		
-		assertEquals(door.getInfo("11111"),Jim.getId());
+		assertEquals(door.getInfo("11111"),Jim.toString());
 		
 		
 		}
