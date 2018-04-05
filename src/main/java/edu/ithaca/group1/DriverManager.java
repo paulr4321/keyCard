@@ -12,7 +12,7 @@ public class DriverManager
 		
 		String s = null;
 
-		User[] userList = {new User("00000", "Brenda"), new User("11111", "Kevin")};
+		User[] userList = {new User("00000", "Brenda", ""), new User("11111", "Kevin", "")};
 
 		Door door = new Door("", userList);
 

@@ -4,6 +4,7 @@ public class User {
 
     private String id;
     private String name;
+    private String department;
 
     /**
      * Default constructor
@@ -14,10 +15,11 @@ public class User {
      * @param id of the user
      * @param name of the user
      */
-    public User(String id, String name)
+    public User(String id, String name, String department)
     {
         this.id = id;
         this.name = name;
+        this.department = department;
     }
     /*
     * Getter function for ID
@@ -57,13 +59,10 @@ public class User {
         return output;
     }
 
-    public void setDepartment()
-    {
-
-    }
+    public void setDepartment(String department){this.department = department; }
 
     public String getDepartment()
     {
-        return "";
+        return department;
     }
 }
