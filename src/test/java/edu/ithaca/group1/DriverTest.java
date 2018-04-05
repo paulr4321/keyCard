@@ -1,11 +1,10 @@
 package edu.ithaca.group1;
 
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class DriverTest
@@ -23,6 +22,7 @@ public class DriverTest
 		User Kevin = new User("00000", "Kevin");
 		
 		User Jim = new User("11111", "Jim");
+		User Rob = new User("11112", "Rob");
 		
 		User[] userList = {Paul, Vaseal, Ben, Fernando, Kevin};
 
@@ -71,6 +71,8 @@ public class DriverTest
 			}
 		}
 		assertEquals(true, check, "New ID does not match door ID");
+		
+		assertEquals(door.getInfo("11111"),Jim.getId());
 		
 		
 		}
