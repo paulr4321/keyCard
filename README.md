@@ -39,5 +39,6 @@
 <a href="https://docs.google.com/document/d/1Tb0tsgK87yBSG3024-oeEL2KwOporxNpCx1GOIYB81s/edit?usp=sharing" target="_blank">Sprint 1 Review Notes</a> <br>
 
 <h4>Sprint 2:</h4> Multiple views: One for user to request permissions, one for security rep to review requests and approve or deny them, and one for the manager to add approved requests.<br>
+<a href="https://drive.google.com/file/d/1I28hq5xLUjbNuTjOR-6MU_ydSzsVyVvk/view?usp=sharing" target="_blank">Class Diagram</a> <br>
 <a href="https://drive.google.com/file/d/1UIkhwbCJklW0C0u1UxNPFahcKHp3D7d7/view?usp=sharing" target="_blank">System State Diagram</a> <br>
-<a href="https://drive.google.com/file/d/1UIkhwbCJklW0C0u1UxNPFahcKHp3D7d7/view?usp=sharing" target="_blank">Request State Diagram</a> <br>
+<a href="https://drive.google.com/file/d/1XbLVszAMKE-Rg2fs9nphIb9GFROmN2yK/view?usp=sharing" target="_blank">Request State Diagram</a> <br>
