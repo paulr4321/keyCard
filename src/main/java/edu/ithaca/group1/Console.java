@@ -5,16 +5,13 @@ import java.util.Scanner;
 
 public class Console {
 
-    String options;
-
-    public Console(String options){
-        this.options = options;
-    }
+    public Console(){}
 
     /**
+     * @param options string of options passed in by a state class
      *Formats and prints out list of options
      */
-    public void listOptions()
+    public void listOptions(String options)
     {
         String delims = "[,]";
         String[] listOfOptions = options.split(delims);
@@ -29,9 +26,10 @@ public class Console {
     /**
      * Gets input from user. Input must be an integer. If input is not an integer, or if the input is not
      * one of the listed options, the user will be prompted until valid input is entered.
+     * @param options string of options passed in by a state class
      *@return returns the option requested from the user
      */
-    public int getInputOption()
+    public int getInputOption(String options)
     {
         int input = -1;
         boolean valid = false;
@@ -63,12 +61,35 @@ public class Console {
     }
 
     /**
-     * Prints out desired string
-     * @param msg string to be printed
+     * getInputString prompts the user for field
+     * names such as their first name, department, building, etc. These field names will be
+     * processed as strings as opposed to getInputOption which takes in an integer from the user
+     * @return getInputString returns the field name entered, which will be written out into
+     * its respective location
      */
-    public void display(String msg)
+    public String getInputString()
     {
-        System.out.println(msg);
+        Scanner in = new Scanner(System.in);
+        boolean valid = false;
+        String delims = "[a-zA-Z0-9-\\s+]*";
+        String field = "";
+
+        in.nextLine();
+
+        while(!valid){
+            System.out.println("\nEnter field name:\n");
+
+            field = in.nextLine();
+
+            if (field.matches(delims)){
+                System.out.println("Field name: " + field);
+                valid = true;
+            } else {
+                System.out.println("\nInvalid characters entered, please try again");
+            }
+        }
+
+        return field;
     }
 
 }
