@@ -1,28 +1,28 @@
 package edu.ithaca.group1;
 
 import org.junit.jupiter.api.Test;
-
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Scanner;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class DriverTest
 
 {
 	@Test
-	public void setupTest(String[] args) throws Exception {
+	public void setupTest() throws Exception {
 
 		String s = null;
 
-		User Paul = new User("12345", "Paul");
-		User Vaseal = new User("54321", "Vaseal");
-		User Ben = new User("12346", "Ben");
-		User Fernando = new User("13456", "Ben");
-		User Kevin = new User("00000", "Kevin");
+		User Paul = new User("12345", "Paul", "");
+		User Vaseal = new User("54321", "Vaseal", "");
+		User Ben = new User("12346", "Ben", "");
+		User Fernando = new User("13456", "Ben", "");
+		User Kevin = new User("00000", "Kevin", "");
 		
-		User Jim = new User("11111", "Jim");
+		User Jim = new User("11111", "Jim", "");
+		User Rob = new User("11112", "Rob", "");
 		
 		User[] userList = {Paul, Vaseal, Ben, Fernando, Kevin};
 
@@ -34,7 +34,7 @@ public class DriverTest
 		try{
 		    Scanner reader = new Scanner(System.in);  // Reading from System.in
 		    System.out.println("Enter 5 numbers: ");
-		    s = reader.next();
+		    s = "12345"; //reader.next();
 		}
 		
 		catch (NumberFormatException a){
@@ -71,6 +71,8 @@ public class DriverTest
 			}
 		}
 		assertEquals(true, check, "New ID does not match door ID");
+		
+		assertEquals(door.getInfo("11111"),Jim.toString());
 		
 		
 		}

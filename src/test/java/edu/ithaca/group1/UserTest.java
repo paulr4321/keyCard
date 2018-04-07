@@ -1,5 +1,7 @@
 package edu.ithaca.group1;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class UserTest {
@@ -59,6 +61,21 @@ class UserTest {
     }
 
 
+    @org.junit.jupiter.api.Test
+    void getDepartment() {
+        String myDept = "Comp Sci";
+        myUser.setDepartment(myDept);
+        assertEquals(myDept, myUser.getDepartment(), "Department does not match");
+    }
 
+    @org.junit.jupiter.api.Test
+    void setDepartment() {
+        String myDept = "Comp Sci";
+        myUser.setDepartment(myDept);
+        assertEquals(myDept, myUser.getDepartment(), "Department does not match");
 
+        myDept = "";
+        myUser.setDepartment(myDept);
+        assertEquals(myDept, myUser.getDepartment(), "Department does not match");
+    }
 }
