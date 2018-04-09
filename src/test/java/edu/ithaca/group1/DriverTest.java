@@ -1,8 +1,11 @@
 package edu.ithaca.group1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -10,73 +13,59 @@ import java.util.Scanner;
 public class DriverTest
 
 {
-	@Test
+	User Paul;
+	User Vaseal;
+	User Ben;
+	User Fernando;
+	User Kevin;
+	User Jim;
+	User Rob;
+	DriverManager manager;
+	Door door;
+	User[] userList;
+	ArrayList<String> list = new ArrayList<String>();
+	
+	@BeforeEach
 	public void setupTest() throws Exception {
 
 		String s = null;
 
-		User Paul = new User("12345", "Paul", "");
-		User Vaseal = new User("54321", "Vaseal", "");
-		User Ben = new User("12346", "Ben", "");
-		User Fernando = new User("13456", "Ben", "");
-		User Kevin = new User("00000", "Kevin", "");
+		Paul = new User("12345", "Paul", "");
+		Vaseal = new User("54321", "Vaseal", "");
+		Ben = new User("12346", "Ben", "");
+		Fernando = new User("13456", "Fernando", "");
+		Kevin = new User("00000", "Kevin", "");
 		
-		User Jim = new User("11111", "Jim", "");
-		User Rob = new User("11112", "Rob", "");
+		Jim = new User("11111", "Jim", "");
+		Rob = new User("11112", "Rob", "");
 		
-		User[] userList = {Paul, Vaseal, Ben, Fernando, Kevin};
+		userList = new User[]{Paul, Vaseal, Ben, Fernando, Kevin};
+		door = new Door("", userList);
 
-		Door door = new Door("", userList);
-
-		boolean check;
+		manager = new DriverManager();
 		
-		
-		try{
-		    Scanner reader = new Scanner(System.in);  // Reading from System.in
-		    System.out.println("Enter 5 numbers: ");
-		    s = "12345"; //reader.next();
-		}
-		
-		catch (NumberFormatException a){
-		    System.out.print("Problem");
-		}
-		
-		check = door.checkUserAccess(s);
-		if(check == true){
-			System.out.print("Access Granted");
-		}
-		else{
-			System.out.print("Access Denied");
-		}
-		
-		door.addUser(Jim);
-		
-		for(int i =0; i < door.list.size();i++){
-			if(door.list.get(i)==Jim){
-				check = true;
-			}
-			else{
-				check = false;
-			}
-		}
-		assertEquals(true, check, "New ID does not match door ID");
-		door.removeUser(Kevin.getId());
-		
-		for(int i =0; i < door.list.size();i++){
-			if(door.list.get(i)==Jim){
-				check = true;
-			}
-			else{
-				check = false;
-			}
-		}
-		assertEquals(true, check, "New ID does not match door ID");
-		
-		assertEquals(door.getInfo("11111"),Jim.toString());
-		
-		
-		}
+	}
+	@Test
+	public void addTest() throws Exception{
+		manager.addUser(door, Jim);
+		boolean check = door.checkUserAccess("11111");
+		assertEquals(true, check, "Access permissions incorrect");
 		
 		
 		
 	}
+
+	@Test
+	public void viewApprovedList(){
+		manager.viewApprovedRequests(userList);
+	}
+		
+	@Test
+	public void deny(){
+		manager.denyRequest();
+		
+	}
+		
+		
+		
+}
