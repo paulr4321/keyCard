@@ -45,7 +45,7 @@ public class DriverTest
 		manager = new DriverManager();
 		
 	}
-	Test
+	@Test
 	public void addTest() throws Exception{
 		manager.addUser(door, Jim);
 		boolean check = door.checkUserAccess("Jim");
@@ -55,12 +55,12 @@ public class DriverTest
 		
 	}
 
-	Test
+	@Test
 	public void viewApprovedList(){
 		manager.viewApprovedRequests(userList);
 	}
 		
-	Test
+	@Test
 	public void deny(){
 		manager.denyRequest();
 		
