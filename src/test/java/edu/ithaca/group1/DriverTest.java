@@ -40,7 +40,7 @@ public class DriverTest
 		Rob = new User("11112", "Rob", "");
 		
 		userList = new User[]{Paul, Vaseal, Ben, Fernando, Kevin};
-		Door door = new Door("", userList);
+		door = new Door("", userList);
 
 		manager = new DriverManager();
 		
