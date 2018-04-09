@@ -36,7 +36,7 @@ public class DriverTest
 		Fernando = new User("13456", "Fernando", "");
 		Kevin = new User("00000", "Kevin", "");
 		
-		Jim = new User("11110", "Jim", "");
+		Jim = new User("11111", "Jim", "");
 		Rob = new User("11112", "Rob", "");
 		
 		userList = new User[]{Paul, Vaseal, Ben, Fernando, Kevin};
@@ -48,7 +48,7 @@ public class DriverTest
 	@Test
 	public void addTest() throws Exception{
 		manager.addUser(door, Jim);
-		boolean check = door.checkUserAccess("Jim");
+		boolean check = door.checkUserAccess("11111");
 		assertEquals(true, check, "Access permissions incorrect");
 		
 		
