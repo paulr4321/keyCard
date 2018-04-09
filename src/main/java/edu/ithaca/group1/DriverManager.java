@@ -26,9 +26,10 @@ public class DriverManager
      * @viewApprovedRequests loops through the list and prints the approved users
      */
 	public void viewApprovedRequests(User[] userList){
-		
+		System.out.println("APPROVED USERS!:");
 		for(int i = 0; i< userList.length; i++){
 			System.out.println(userList[i]);
+			System.out.println(" ");
 		}
 		
 	}
