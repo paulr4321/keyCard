@@ -7,13 +7,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class DataAccessObjectTest {
+    private DataAccessObject DAO;
 
     @BeforeEach
     void setUp() {
-    }
-
-    @AfterEach
-    void tearDown() {
+        DAO = new DataAccessObject("", "", "");
     }
 
     @Test

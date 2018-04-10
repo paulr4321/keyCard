@@ -1,6 +1,7 @@
 package edu.ithaca.group1;
 
 import javax.xml.crypto.Data;
+import com.google.gson.*;
 
 public class DataAccessObject {
     private String doorDataPath;
