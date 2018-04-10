@@ -7,25 +7,29 @@ public class MainMenu {
 
     public MainMenu(){}
 
-    public void startMainMenu(){
+    public int startMainMenu(){
         int selection = -1;
         c.listOptions(menuOptions);
         selection = c.getInputOption(inputOptions);
-        branchMenu(selection);
+        return branchMenu(selection);
     }
 
-    public void branchMenu(int option){
+    public int branchMenu(int option){
         if(option == 0){
             System.out.println("Starting security view...");
             //TODO: launch security view
+            return 0;
         }
         if(option == 1){
             System.out.println("Starting application view...");
             //TODO: launch application view
+            return 1;
         }
         if(option == 2){
             System.out.println("Starting manager view...");
             //TODO: launch manager view
+            return 2;
         }
+        return -1;
     }
 }
