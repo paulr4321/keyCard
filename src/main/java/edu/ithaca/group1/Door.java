@@ -1,5 +1,6 @@
 package edu.ithaca.group1;
 
+import edu.ithaca.group1.User;
 import java.util.ArrayList;
 import java.util.Arrays;
 
