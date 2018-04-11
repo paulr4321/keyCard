@@ -30,7 +30,7 @@ public class DataAccessObject {
         String line;
 
         try {
-            File file=new File(userDataPath);
+            File file=new File(fileName);
 
             if(file.exists()) {
 
@@ -83,11 +83,11 @@ public class DataAccessObject {
             ArrayList<User> doorUsers = new ArrayList<User>();
 
             for (int j = 0; j < permissionData.size(); j++) {
-                String[] permissionFields = permissionData.get(i).split("%");
+                String[] permissionFields = permissionData.get(j).split("%");
                 if (permissionFields[0].equals(doorId))
                 {
                     for (int k = 0; k < users.size(); k++) {
-                        if (users.get(i).getId().equals(permissionFields[1]))
+                        if (users.get(k).getId().equals(permissionFields[1]))
                         {
                             doorUsers.add(users.get(k));
                         }
@@ -108,7 +108,16 @@ public class DataAccessObject {
      * @param userId id of the user being granted permission
      * @param doorId id of the door being granted permission to
      */
-    public void addPermission(String userId, String doorId){}
+    public void addPermission(String doorId, String userId){
+        try {
+            BufferedWriter output = new BufferedWriter(new FileWriter(permissionDataPath, true));
+
+            String concat = "\n" + doorId + "%" + userId;
+            output.append(concat);
+            output.close();
+        }
+        catch (Exception e) {}
+    }
 
     /**
      * Adds a door to the object's list. saveData must be called in order to write door to file

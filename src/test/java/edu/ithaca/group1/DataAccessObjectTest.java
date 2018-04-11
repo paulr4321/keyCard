@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -38,6 +39,20 @@ class DataAccessObjectTest {
 
     @Test
     void getAllDoors() {
+        ArrayList<Door> doors = DAO.getAllDoors();
+
+        assertEquals(4, doors.size());
+        assertEquals("2", doors.get(0).getID());
+        assertEquals("5", doors.get(1).getID());
+        assertEquals("8", doors.get(2).getID());
+        assertEquals("12", doors.get(3).getID());
+
+        ArrayList<User> permittedUsers = doors.get(0).list;
+        assertEquals(2, permittedUsers.size());
+        permittedUsers = doors.get(2).list;
+        assertEquals(1, permittedUsers.size());
+
+        assertEquals("54321", permittedUsers.get(0).getId());
     }
 
     @Test
@@ -50,17 +65,5 @@ class DataAccessObjectTest {
 
     @Test
     void addUser() {
-    }
-
-    @Test
-    void saveData() {
-    }
-
-    @Test
-    void saveDoors() {
-    }
-
-    @Test
-    void saveUsers() {
     }
 }
