@@ -1,14 +1,21 @@
 package edu.ithaca.group1;
 
-import javax.xml.crypto.Data;
-import com.google.gson.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 public class DataAccessObject {
     private String doorDataPath;
     private String userDataPath;
     private String permissionDataPath;
-    private User[] users;
-    private Door[] doors;
 
     public DataAccessObject(String doorDataPath, String userDataPath, String permissionDataPath){
         this.doorDataPath = doorDataPath;
@@ -16,18 +23,82 @@ public class DataAccessObject {
         this.permissionDataPath = permissionDataPath;
     }
 
+    private ArrayList<String> getData(String fileName)
+    {
+        ArrayList<String> list = new ArrayList<String>();
+        BufferedReader bfr;
+        String line;
+
+        try {
+            File file=new File(userDataPath);
+
+            if(file.exists()) {
+
+                bfr = new BufferedReader(new FileReader(file));
+
+                while ((line = bfr.readLine()) != null) {
+                    list.add(line);
+                }
+                bfr.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
     /**
-     * @return a list of all users in currenty in the system
+     * @return a list of all users in currently in the system
      */
-    public User[] getAllUsers(){
-        return new User[]{};
+    public ArrayList<User> getAllUsers(){
+
+        ArrayList<User> users = new ArrayList<User>();
+
+        ArrayList<String> data = getData(userDataPath);
+
+        for (int i = 0; i < data.size(); i++) {
+            String[] fields = data.get(i).split("%");
+            users.add(new User(fields[0], fields[1], fields[2]));
+        }
+        return users;
     }
 
     /**
      * @return a list of all Doors currently in the system
      */
-    public Door[] getAllDoors(){
-        return new Door[]{};
+    public ArrayList<Door> getAllDoors(){
+        ArrayList<Door> doors = new ArrayList<Door>();
+
+        ArrayList<String> doorData = getData(doorDataPath);
+
+        ArrayList<String> permissionData = getData(permissionDataPath);
+
+        ArrayList<User> users = getAllUsers();
+
+        for (int i = 0; i < doorData.size(); i++) {
+            String[] fields = doorData.get(i).split("%");
+
+            String doorId = fields[0];
+
+            ArrayList<User> doorUsers = new ArrayList<User>();
+
+            for (int j = 0; j < permissionData.size(); j++) {
+                String[] permissionFields = permissionData.get(i).split("%");
+                if (permissionFields[0].equals(doorId))
+                {
+                    for (int k = 0; k < users.size(); k++) {
+                        if (users.get(i).getId().equals(permissionFields[1]))
+                        {
+                            doorUsers.add(users.get(k));
+                        }
+                    }
+                }
+            }
+
+            doors.add(new Door(doorId, doorUsers.toArray(new User[doorUsers.size()])));
+        }
+
+        return doors;
     }
 
     /**
@@ -42,36 +113,13 @@ public class DataAccessObject {
     /**
      * Adds a door to the object's list. saveData must be called in order to write door to file
      * @param doorIn
-     * @return the newly updated door list
      */
-    public Door[] addDoor(Door doorIn){
-        return doors;
-    }
+    public void addDoor(Door doorIn){}
 
     /**
      * Adds a user to the object's list. SavaData must be called in order to write door to file
-     * @return
+     * @param user the user to be written to persistent data
      */
-    public User[] addUser(){
-        return users;
-    }
+    public void addUser(User user){}
 
-    /**
-     * Writes this objects current list of users and doors into persistent data storage
-     */
-    public void saveData(){}
-
-    /**
-     * Takes a list of doors and writes them to persistent storage. This list will replace
-     * previous data
-     * @param doors the doors to be written to persistent data
-     */
-    public void saveDoors(Door[] doors){}
-
-    /**
-     * Takes a list of userss and writes them to persistent storage. This list will replace
-     * previous data
-     * @param  users the users to be written to persistent data
-     */
-    public void saveUsers(User[] users){}
 }
