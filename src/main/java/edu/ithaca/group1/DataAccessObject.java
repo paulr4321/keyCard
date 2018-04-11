@@ -1,13 +1,6 @@
 package edu.ithaca.group1;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -35,6 +28,7 @@ public class DataAccessObject {
             if(file.exists()) {
 
                 bfr = new BufferedReader(new FileReader(file));
+                bfr.readLine();
 
                 while ((line = bfr.readLine()) != null) {
                     list.add(line);
@@ -45,6 +39,36 @@ public class DataAccessObject {
             e.printStackTrace();
         }
         return list;
+    }
+
+    private void replaceLine(String filePath, String toReplace, String replaceWith) {
+        try {
+            BufferedReader file = new BufferedReader(new FileReader(filePath));
+            String line;
+            StringBuffer inputBuffer = new StringBuffer();
+
+            while ((line = file.readLine()) != null) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            String inputStr = inputBuffer.toString();
+
+            file.close();
+
+            inputStr = inputStr.replace(toReplace, replaceWith);
+
+            FileOutputStream fileOut = new FileOutputStream(filePath);
+            fileOut.write(inputStr.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+    }
+
+    private void incrementId(String filePath, String id)
+    {
+        replaceLine(filePath, id+"\n", Integer.toString(Integer.parseInt(id)+1)+"\n");
     }
 
     /**
@@ -110,25 +134,79 @@ public class DataAccessObject {
      */
     public void addPermission(String doorId, String userId){
         try {
-            BufferedWriter output = new BufferedWriter(new FileWriter(permissionDataPath, true));
+            BufferedReader bfr;
+            String nextId;
+            File file = new File(permissionDataPath);
 
-            String concat = "\n" + doorId + "%" + userId;
-            output.append(concat);
-            output.close();
+            if(file.exists()) {
+
+                bfr = new BufferedReader(new FileReader(file));
+                nextId = bfr.readLine();
+                bfr.close();
+                incrementId(permissionDataPath, nextId);
+
+                BufferedWriter output = new BufferedWriter(new FileWriter(permissionDataPath, true));
+
+                String concat = nextId + doorId + "%" + userId;
+                output.append(concat);
+                output.close();
+            }
         }
         catch (Exception e) {}
     }
 
     /**
      * Adds a door to the object's list. saveData must be called in order to write door to file
-     * @param doorIn
      */
-    public void addDoor(Door doorIn){}
+    public void addDoor(){
+
+        try {
+            BufferedReader bfr;
+            String nextId;
+            File file = new File(doorDataPath);
+
+            if(file.exists()) {
+
+                bfr = new BufferedReader(new FileReader(file));
+                nextId = bfr.readLine();
+                bfr.close();
+                incrementId(doorDataPath, nextId);
+                BufferedWriter output = new BufferedWriter(new FileWriter(doorDataPath, true));
+
+                String concat = nextId; //add other fields from param here
+                output.append(concat);
+                output.close();
+            }
+        }
+        catch (Exception e) {}
+    }
 
     /**
-     * Adds a user to the object's list. SavaData must be called in order to write door to file
-     * @param user the user to be written to persistent data
+     * Add's a new user to the database
+     * @param name name of the new user
+     * @param department department of the new user
      */
-    public void addUser(User user){}
+    public void addUser(String name, String department){
+        try {
+            BufferedReader bfr;
+            String nextId;
+            File file = new File(userDataPath);
 
+            if (file.exists())
+            {
+
+                bfr = new BufferedReader(new FileReader(file));
+                nextId = bfr.readLine();
+                bfr.close();
+                incrementId(userDataPath, nextId);
+
+                BufferedWriter output = new BufferedWriter(new FileWriter(userDataPath, true));
+
+                String concat = nextId + "%" + name + "%" + department;
+                output.append(concat);
+                output.close();
+            }
+        }
+        catch (Exception e) {}
+    }
 }
