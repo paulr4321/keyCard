@@ -71,6 +71,34 @@ public class DataAccessObject {
         replaceLine(filePath, id+"\n", Integer.toString(Integer.parseInt(id)+1)+"\n");
     }
 
+    private void appendToFile(String filePath, String[] fields)
+    {
+        try {
+            BufferedReader bfr;
+            String nextId;
+            File file = new File(filePath);
+
+            if(file.exists()) {
+
+                bfr = new BufferedReader(new FileReader(file));
+                nextId = bfr.readLine();
+                bfr.close();
+                incrementId(filePath, nextId);
+
+                BufferedWriter output = new BufferedWriter(new FileWriter(filePath, true));
+
+                String concat = nextId;
+                for (int i = 0; i < fields.length; i++) {
+                    concat += "%" + fields[i];
+                }
+
+                output.append(concat);
+                output.close();
+            }
+        }
+        catch (Exception e) {}
+    }
+
     /**
      * @return a list of all users in currently in the system
      */
@@ -133,52 +161,14 @@ public class DataAccessObject {
      * @param doorId id of the door being granted permission to
      */
     public void addPermission(String doorId, String userId){
-        try {
-            BufferedReader bfr;
-            String nextId;
-            File file = new File(permissionDataPath);
-
-            if(file.exists()) {
-
-                bfr = new BufferedReader(new FileReader(file));
-                nextId = bfr.readLine();
-                bfr.close();
-                incrementId(permissionDataPath, nextId);
-
-                BufferedWriter output = new BufferedWriter(new FileWriter(permissionDataPath, true));
-
-                String concat = nextId + doorId + "%" + userId;
-                output.append(concat);
-                output.close();
-            }
-        }
-        catch (Exception e) {}
+        appendToFile(permissionDataPath, new String[]{doorId, userId});
     }
 
     /**
      * Adds a door to the object's list. saveData must be called in order to write door to file
      */
     public void addDoor(){
-
-        try {
-            BufferedReader bfr;
-            String nextId;
-            File file = new File(doorDataPath);
-
-            if(file.exists()) {
-
-                bfr = new BufferedReader(new FileReader(file));
-                nextId = bfr.readLine();
-                bfr.close();
-                incrementId(doorDataPath, nextId);
-                BufferedWriter output = new BufferedWriter(new FileWriter(doorDataPath, true));
-
-                String concat = nextId; //add other fields from param here
-                output.append(concat);
-                output.close();
-            }
-        }
-        catch (Exception e) {}
+        appendToFile(doorDataPath, new String[]{});
     }
 
     /**
@@ -187,26 +177,6 @@ public class DataAccessObject {
      * @param department department of the new user
      */
     public void addUser(String name, String department){
-        try {
-            BufferedReader bfr;
-            String nextId;
-            File file = new File(userDataPath);
-
-            if (file.exists())
-            {
-
-                bfr = new BufferedReader(new FileReader(file));
-                nextId = bfr.readLine();
-                bfr.close();
-                incrementId(userDataPath, nextId);
-
-                BufferedWriter output = new BufferedWriter(new FileWriter(userDataPath, true));
-
-                String concat = nextId + "%" + name + "%" + department;
-                output.append(concat);
-                output.close();
-            }
-        }
-        catch (Exception e) {}
+        appendToFile(userDataPath, new String[]{name, department});
     }
 }
