@@ -1,8 +1,7 @@
 package edu.ithaca.group1;
 
 public class MainMenu extends State {
-    private String menuOptions = "Security Menu,Application Menu,Manager Menu";
-    private String inputOptions = "0,1,2";
+    private String menuOptions = "Security Menu,Application Menu,Manager Menu,Quit Application";
 
     public MainMenu(){
         super(StateStatus.MAINMENU);
@@ -11,7 +10,7 @@ public class MainMenu extends State {
     public void run(){
         int selection = -1;
         super.myConsole.listOptions(menuOptions);
-        selection = super.myConsole.getInputOption(inputOptions);
+        selection = super.myConsole.getInputOption(menuOptions);
         branchMenu(selection);
     }
 
