@@ -15,21 +15,24 @@ public class MainMenu {
     }
 
     public int branchMenu(int option){
-        if(option == 0){
-            System.out.println("Starting security view...");
-            //TODO: launch security view
-            return 0;
+        switch(option){
+            case 0:
+                System.out.println("Starting security view...");
+                //TODO: change to security state
+                return 0;
+            case 1:
+                System.out.println("Starting application view...");
+                //TODO: change to application state
+                return 1;
+            case 2:
+                System.out.println("Starting manager view...");
+                //TODO: change to manager state
+                return 2;
+            case 3:
+                System.out.println("Quitting application...");
+                System.exit(0);
+                return 3;
+            default: return -1;
         }
-        if(option == 1){
-            System.out.println("Starting application view...");
-            //TODO: launch application view
-            return 1;
-        }
-        if(option == 2){
-            System.out.println("Starting manager view...");
-            //TODO: launch manager view
-            return 2;
-        }
-        return -1;
     }
 }
