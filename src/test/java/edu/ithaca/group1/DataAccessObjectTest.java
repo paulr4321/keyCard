@@ -15,11 +15,11 @@ class DataAccessObjectTest {
 
     @BeforeEach
     void setUp() {
-        DAO = new DataAccessObject("src/test/java/edu/ithaca/group1/data/testDoorData.txt", "src/test/java/edu/ithaca/group1/data/testUserData.txt", "src/test/java/edu/ithaca/group1/data/testPermissionData.txt");
+        DAO = new DataAccessObject("src/test/java/edu/ithaca/group1/data/testDoorData.txt", "src/test/java/edu/ithaca/group1/data/testUserData.txt", "src/test/java/edu/ithaca/group1/data/testPermissionData.txt", "src/test/java/edu/ithaca/group1/data/testRequestData.txt");
         testUsers = new User[]{
-                new User("00000","Bryan Houst", "Mathematics"),
-                new User("54321", "Susan Wheeler", "History"),
-                new User("90981", "Mathew Grakowski", "Psychology")
+                new User("10000","Bryan Houst", "Mathematics"),
+                new User("10001", "Susan Wheeler", "History"),
+                new User("10002", "Mathew Grakowski", "Psychology")
         };
     }
 
@@ -31,9 +31,9 @@ class DataAccessObjectTest {
 
         for (int i = 0; i < users.size(); i++)
         {
-            assertEquals(users.get(i).getId(), testUsers[i].getId());
-            assertEquals(users.get(i).getName(), testUsers[i].getName());
-            assertEquals(users.get(i).getDepartment(), testUsers[i].getDepartment());
+            assertEquals(testUsers[i].getId(), users.get(i).getId());
+            assertEquals(testUsers[i].getName(), users.get(i).getName());
+            assertEquals(testUsers[i].getDepartment(), users.get(i).getDepartment());
         }
     }
 
@@ -52,18 +52,21 @@ class DataAccessObjectTest {
         permittedUsers = doors.get(2).list;
         assertEquals(1, permittedUsers.size());
 
-        assertEquals("54321", permittedUsers.get(0).getId());
+        assertEquals("10002", permittedUsers.get(0).getId());
     }
 
     @Test
     void addPermission() {
+        //DAO.addPermission("8", "10003");
     }
 
     @Test
     void addDoor() {
+        //DAO.addDoor();
     }
 
     @Test
     void addUser() {
+        //DAO.addUser("Bobby Flay", "Anthropology");
     }
 }

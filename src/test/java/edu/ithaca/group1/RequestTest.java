@@ -13,10 +13,10 @@ class RequestTest {
 
     @BeforeEach
     void setUp() {
-        testRequest0 = new Request("11111", "0");
-        testRequest1 = new Request("", "");
-        testRequest2 = new Request("00000", "1");
-        testRequest3 = new Request("43210", "10");
+        testRequest0 = new Request("1","11111", "0");
+        testRequest1 = new Request("2", "", "", RequestStatus.SECURITY_CLEARED);
+        testRequest2 = new Request("3","00000", "1", RequestStatus.ADDED);
+        testRequest3 = new Request("4","43210", "10", RequestStatus.DENIED);
     }
 
     @Test
@@ -35,4 +35,25 @@ class RequestTest {
         assertEquals("10", testRequest3.getDoorId());
     }
 
+    @Test
+    void getRequestId() {
+        assertEquals("1", testRequest0.getRequestId());
+        assertEquals("2", testRequest1.getRequestId());
+        assertEquals("3", testRequest2.getRequestId());
+        assertEquals("4", testRequest3.getRequestId());
+    }
+
+    @Test
+    void getStatus() {
+        assertEquals(RequestStatus.NEW, testRequest0.getStatus());
+        assertEquals(RequestStatus.SECURITY_CLEARED, testRequest1.getStatus());
+        assertEquals(RequestStatus.ADDED, testRequest2.getStatus());
+        assertEquals(RequestStatus.DENIED, testRequest3.getStatus());
+    }
+
+    @Test
+    void setStatus() {
+        testRequest0.setStatus(RequestStatus.SECURITY_CLEARED);
+        assertEquals(RequestStatus.SECURITY_CLEARED, testRequest0.getStatus());
+    }
 }

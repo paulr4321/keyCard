@@ -9,11 +9,13 @@ public class DataAccessObject {
     private String doorDataPath;
     private String userDataPath;
     private String permissionDataPath;
+    private String requestDataPath;
 
-    public DataAccessObject(String doorDataPath, String userDataPath, String permissionDataPath){
+    public DataAccessObject(String doorDataPath, String userDataPath, String permissionDataPath, String requestDataPath){
         this.doorDataPath = doorDataPath;
         this.userDataPath = userDataPath;
         this.permissionDataPath = permissionDataPath;
+        this.requestDataPath = requestDataPath;
     }
 
     private ArrayList<String> getData(String fileName)
@@ -136,10 +138,10 @@ public class DataAccessObject {
 
             for (int j = 0; j < permissionData.size(); j++) {
                 String[] permissionFields = permissionData.get(j).split("%");
-                if (permissionFields[0].equals(doorId))
+                if (permissionFields[1].equals(doorId))
                 {
                     for (int k = 0; k < users.size(); k++) {
-                        if (users.get(k).getId().equals(permissionFields[1]))
+                        if (users.get(k).getId().equals(permissionFields[2]))
                         {
                             doorUsers.add(users.get(k));
                         }
@@ -151,6 +153,23 @@ public class DataAccessObject {
         }
 
         return doors;
+    }
+
+    /**
+     * Gets all the requests in the system
+     * @return an ArrayList of all the pending request objects
+     */
+    public ArrayList<Request> getAllRequest()
+    {
+        ArrayList<Request> requests = new ArrayList<Request>();
+
+        ArrayList<String> data = getData(requestDataPath);
+
+        for (int i = 0; i < data.size(); i++) {
+            String[] fields = data.get(i).split("%");
+            //requests.add(new Request(fields[0], fields[1], fields[2], fields[3]));
+        }
+        return requests;
     }
 
     /**
@@ -172,11 +191,21 @@ public class DataAccessObject {
     }
 
     /**
-     * Add's a new user to the database
+     * Adds a new user to the database
      * @param name name of the new user
      * @param department department of the new user
      */
     public void addUser(String name, String department){
         appendToFile(userDataPath, new String[]{name, department});
+    }
+
+    /**
+     * Adds a new request to the database
+     * @param doorId id of the door the user is requesting permission to
+     * @param userId id of the user requesting permission
+     */
+    public void addRequest(String doorId, String userId)
+    {
+        appendToFile(userDataPath, new String[]{doorId, userId});
     }
 }
