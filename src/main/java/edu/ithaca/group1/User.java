@@ -15,27 +15,27 @@ public class User {
      * @param id of the user
      * @param name of the user
      */
-    public User(String id, String name, String department)
-    {
+    public User(String id, String name, String department) {
         this.id = id;
         this.name = name;
         this.department = department;
     }
-    /*
+    /**
     * Getter function for ID
+     *
     */
     public String getId(){
         return this.id;
     }
 
-    /*
+    /**
     * Getter function for Name
     */
     public String getName(){
         return this.name;
     }
 
-    /*
+    /**
     * Setter function for ID
     */
     
@@ -43,7 +43,7 @@ public class User {
         this.id = idIn;
     }
 
-    /*
+    /**
     * Setter function for Name
     */
     public void setName(String nameIn){
