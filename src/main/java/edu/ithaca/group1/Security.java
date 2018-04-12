@@ -2,7 +2,6 @@ package edu.ithaca.group1;
 
 public class Security extends State{
 
-    private boolean approved = false;
     private String options = "View Pending Requests,Approve Request,Deny Request";
 
     public Security(StateStatus myState)
@@ -24,8 +23,7 @@ public class Security extends State{
      */
     public boolean approveRequest()
     {
-        this.approved = true;
-        return approved;
+        return true;
     }
 
     /**
@@ -34,7 +32,6 @@ public class Security extends State{
      */
     public boolean denyRequest()
     {
-        this.approved = false;
-        return approved;
+        return false;
     }
 }
