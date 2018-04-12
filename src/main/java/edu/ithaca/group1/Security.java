@@ -1,11 +1,14 @@
 package edu.ithaca.group1;
 
-public class Security{
+public class Security extends State{
 
-    private int securityState = 2;
     private boolean approved = false;
+    private String options = "View Pending Requests,Approve Request,Deny Request";
 
-    public Security(){}
+    public Security(StateStatus myState)
+    {
+        super(myState);
+    }
 
     /**
      * Prints out a list of requests that are awaiting approval from the security rep
@@ -19,7 +22,7 @@ public class Security{
      * Approves a request from the list of pending requests
      * @return approved - status of approval should be true since request is approved
      */
-    public boolean ApproveRequest()
+    public boolean approveRequest()
     {
         this.approved = true;
         return approved;
@@ -29,10 +32,9 @@ public class Security{
      * Denies a request from the list of pending requests
      * @return approved - status of approval should be false since request is denied
      */
-    public boolean DenyRequest()
+    public boolean denyRequest()
     {
         this.approved = false;
         return approved;
     }
-
 }
