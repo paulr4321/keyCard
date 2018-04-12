@@ -18,6 +18,11 @@ public class DataAccessObject {
         this.requestDataPath = requestDataPath;
     }
 
+    /**
+     * Helper method for getting all the data out of a file
+     * @param fileName name of the file to retrieve data from
+     * @return ArrayList of strings representing each line of the file
+     */
     private ArrayList<String> getData(String fileName)
     {
         ArrayList<String> list = new ArrayList<String>();
@@ -43,6 +48,12 @@ public class DataAccessObject {
         return list;
     }
 
+    /**
+     * Handles replacing a line in a file
+     * @param filePath the file to replace a line in
+     * @param toReplace the string to be replaced
+     * @param replaceWith the new string
+     */
     private void replaceLine(String filePath, String toReplace, String replaceWith) {
         try {
             BufferedReader file = new BufferedReader(new FileReader(filePath));
@@ -68,11 +79,33 @@ public class DataAccessObject {
         }
     }
 
-    private void incrementId(String filePath, String id)
+    /**
+     * Handles incrementing the reference id at the top of a file
+     * @param filePath the filepath of the file to use
+     */
+    private void incrementId(String filePath)
     {
-        replaceLine(filePath, id+"\n", Integer.toString(Integer.parseInt(id)+1)+"\n");
+        try {
+            BufferedReader bfr;
+            File file = new File(filePath);
+
+            if (file.exists()) {
+                bfr = new BufferedReader(new FileReader(file));
+                String origId = bfr.readLine();
+                String newId = Integer.toString(Integer.parseInt(origId.substring(1))+1);
+                bfr.close();
+                replaceLine(filePath, origId, "#"+newId);
+            }
+        }
+        catch (Exception e){}
     }
 
+    /**
+     * Handles creating a properly formatted string for writing to files
+     * @param id id of entry
+     * @param fields an array of all the fields of the entry
+     * @return the formatted string
+     */
     private String createFileEntry(String id, String[] fields)
     {
         String entry = id;
@@ -82,6 +115,11 @@ public class DataAccessObject {
         return entry;
     }
 
+    /**
+     * Adds an entry to the bottom of a file
+     * @param filePath filepath of the file to write to
+     * @param fields fields of the entry to be added
+     */
     private void appendToFile(String filePath, String[] fields)
     {
         try {
@@ -92,9 +130,9 @@ public class DataAccessObject {
             if(file.exists()) {
 
                 bfr = new BufferedReader(new FileReader(file));
-                nextId = bfr.readLine();
+                nextId = bfr.readLine().substring(1);
                 bfr.close();
-                incrementId(filePath, nextId);
+                incrementId(filePath);
 
                 BufferedWriter output = new BufferedWriter(new FileWriter(filePath, true));
 
