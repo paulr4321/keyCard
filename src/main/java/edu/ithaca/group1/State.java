@@ -2,7 +2,8 @@ package edu.ithaca.group1;
 
 public class State {
 
-
+    protected Console myConsole;
+    protected DataAccessObject myDAO;
     private StateStatus nextState;
     private boolean completed;
 
@@ -21,7 +22,7 @@ public class State {
     /**
      * Runs the next state
      */
-    public void run() {}
+    public void run(){}
 
 
     /**
