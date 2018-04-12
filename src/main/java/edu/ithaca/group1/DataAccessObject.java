@@ -73,6 +73,15 @@ public class DataAccessObject {
         replaceLine(filePath, id+"\n", Integer.toString(Integer.parseInt(id)+1)+"\n");
     }
 
+    private String createFileEntry(String id, String[] fields)
+    {
+        String entry = id;
+        for (int i = 0; i < fields.length; i++) {
+            entry += "%" + fields[i];
+        }
+        return entry;
+    }
+
     private void appendToFile(String filePath, String[] fields)
     {
         try {
@@ -89,12 +98,9 @@ public class DataAccessObject {
 
                 BufferedWriter output = new BufferedWriter(new FileWriter(filePath, true));
 
-                String concat = nextId;
-                for (int i = 0; i < fields.length; i++) {
-                    concat += "%" + fields[i];
-                }
+                String entry = createFileEntry(nextId, fields);
 
-                output.append(concat);
+                output.append(entry);
                 output.close();
             }
         }
@@ -159,7 +165,7 @@ public class DataAccessObject {
      * Gets all the requests in the system
      * @return an ArrayList of all the pending request objects
      */
-    public ArrayList<Request> getAllRequest()
+    public ArrayList<Request> getAllRequests()
     {
         ArrayList<Request> requests = new ArrayList<Request>();
 
@@ -167,7 +173,7 @@ public class DataAccessObject {
 
         for (int i = 0; i < data.size(); i++) {
             String[] fields = data.get(i).split("%");
-            //requests.add(new Request(fields[0], fields[1], fields[2], fields[3]));
+            requests.add(new Request(fields[0], fields[1], fields[2], RequestStatus.valueOf(fields[3])));
         }
         return requests;
     }
@@ -206,6 +212,26 @@ public class DataAccessObject {
      */
     public void addRequest(String doorId, String userId)
     {
-        appendToFile(userDataPath, new String[]{doorId, userId});
+        appendToFile(requestDataPath, new String[]{doorId, userId, RequestStatus.NEW.toString()});
+    }
+
+    /**
+     * Handles updating the status of a request in the database
+     * @param requestId the id of the request to be updated
+     * @param newStatus the new status of the request
+     */
+    public void updateRequest(String requestId, RequestStatus newStatus)
+    {
+        ArrayList<Request> requests = getAllRequests();
+
+        for (int i = 0; i < requests.size(); i++) {
+            Request req = requests.get(i);
+            if (req.getId().equals(requestId))
+            {
+                String[] fields = new String[]{req.getUserId(), req.getDoorId(), req.getStatus().toString()};
+                String[] newFields = new String[]{req.getUserId(), req.getDoorId(), newStatus.toString()};
+                replaceLine(requestDataPath, createFileEntry(req.getId(), fields), createFileEntry(req.getId(), newFields));
+            }
+        }
     }
 }

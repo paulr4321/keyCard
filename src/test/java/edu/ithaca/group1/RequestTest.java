@@ -36,11 +36,11 @@ class RequestTest {
     }
 
     @Test
-    void getRequestId() {
-        assertEquals("1", testRequest0.getRequestId());
-        assertEquals("2", testRequest1.getRequestId());
-        assertEquals("3", testRequest2.getRequestId());
-        assertEquals("4", testRequest3.getRequestId());
+    void getId() {
+        assertEquals("1", testRequest0.getId());
+        assertEquals("2", testRequest1.getId());
+        assertEquals("3", testRequest2.getId());
+        assertEquals("4", testRequest3.getId());
     }
 
     @Test

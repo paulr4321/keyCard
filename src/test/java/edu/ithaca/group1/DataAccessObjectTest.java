@@ -11,20 +11,20 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DataAccessObjectTest {
     private DataAccessObject DAO;
-    private User[] testUsers;
 
     @BeforeEach
     void setUp() {
         DAO = new DataAccessObject("src/test/java/edu/ithaca/group1/data/testDoorData.txt", "src/test/java/edu/ithaca/group1/data/testUserData.txt", "src/test/java/edu/ithaca/group1/data/testPermissionData.txt", "src/test/java/edu/ithaca/group1/data/testRequestData.txt");
-        testUsers = new User[]{
-                new User("10000","Bryan Houst", "Mathematics"),
-                new User("10001", "Susan Wheeler", "History"),
-                new User("10002", "Mathew Grakowski", "Psychology")
-        };
+
     }
 
     @Test
     void getAllUsers() {
+        User[] testUsers = new User[]{
+                new User("10000","Bryan Houst", "Mathematics"),
+                new User("10001", "Susan Wheeler", "History"),
+                new User("10002", "Mathew Grakowski", "Psychology")
+        };
         ArrayList<User> users = DAO.getAllUsers();
 
         assertEquals(3, users.size(), "Incorrect number of users in user list");
@@ -56,6 +56,19 @@ class DataAccessObjectTest {
     }
 
     @Test
+    void getAllRequests()
+    {
+        ArrayList<Request> requests = DAO.getAllRequests();
+        assertEquals(2, requests.size());
+        assertEquals("1", requests.get(0).getDoorId());
+        assertEquals("10000", requests.get(0).getUserId());
+        assertEquals(RequestStatus.NEW, requests.get(0).getStatus());
+        assertEquals("8", requests.get(1).getDoorId());
+        assertEquals("10001", requests.get(1).getUserId());
+        assertEquals(RequestStatus.SECURITY_CLEARED, requests.get(1).getStatus());
+    }
+
+    @Test
     void addPermission() {
         //DAO.addPermission("8", "10003");
     }
@@ -68,5 +81,15 @@ class DataAccessObjectTest {
     @Test
     void addUser() {
         //DAO.addUser("Bobby Flay", "Anthropology");
+    }
+
+    @Test
+    void addRequest() {
+        //DAO.addRequest("1", "10000");
+    }
+
+    @Test
+    void updateRequest() {
+        //DAO.updateRequest("2", RequestStatus.DENIED);
     }
 }
