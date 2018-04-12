@@ -1,6 +1,6 @@
 package edu.ithaca.group1;
 
-public abstract class State {
+public class State {
 
     protected Console myConsole;
     protected DataAccessObject myDAO;
@@ -22,7 +22,7 @@ public abstract class State {
     /**
      * Runs the next state
      */
-    public abstract void run();
+    public void run(){}
 
 
     /**
