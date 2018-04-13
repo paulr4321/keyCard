@@ -252,7 +252,7 @@ public class DataAccessObject {
      */
     public void addRequest(String doorId, String userId)
     {
-        appendToFile(requestDataPath, new String[]{doorId, userId, RequestStatus.NEW.toString()});
+        appendToFile(requestDataPath, new String[]{userId, doorId, RequestStatus.NEW.toString()});
     }
 
     /**

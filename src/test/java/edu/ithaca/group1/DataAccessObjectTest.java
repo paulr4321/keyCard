@@ -1,12 +1,10 @@
 package edu.ithaca.group1;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileWriter;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -132,16 +130,48 @@ class DataAccessObjectTest {
     @Test
     void addUser() {
         DAO.addUser("Bobby Flay", "Anthropology");
+        User testUser = DAO.getUserById("10003");
+        assertEquals("Bobby Flay", testUser.getName());
+        assertEquals("Anthropology", testUser.getDepartment());
+
+        for (int i = 1; i < 11; i++) {
+            String name = "Test User" +Integer.toString(i);
+            DAO.addUser(name, "Test");
+            String id = Integer.toString(10003+i);
+            testUser = DAO.getUserById(id);
+            assertEquals(4+i, DAO.getAllUsers().size());
+            assertEquals(id, testUser.getId());
+            assertEquals(name, testUser.getName());
+        }
     }
 
     @Test
     void addRequest() {
-        DAO.addRequest("1", "10000");
+        for (int i = 1; i < 11; i++) {
+            String doorId = Integer.toString(i);
+            String userId = Integer.toString(10000 + i);
+            String requestId = Integer.toString(2+i);
+            DAO.addRequest(doorId, userId);
+            Request testRequest = DAO.getRequestById(requestId);
+            assertEquals(2+i, DAO.getAllRequests().size());
+            assertEquals(requestId, testRequest.getId());
+            assertEquals(doorId, testRequest.getDoorId());
+            assertEquals(userId, testRequest.getUserId());
+        }
     }
 
     @Test
     void updateRequest() {
         DAO.updateRequest("2", RequestStatus.DENIED);
+        DAO.updateRequest("1", RequestStatus.SECURITY_CLEARED);
+        Request request1 = DAO.getRequestById("1");
+        Request request2 = DAO.getRequestById("2");
+        assertEquals(RequestStatus.DENIED, request2.getStatus());
+        assertEquals(RequestStatus.SECURITY_CLEARED, request1.getStatus());
+        assertEquals("10000", request1.getUserId());
+        assertEquals("10001", request2.getUserId());
+        assertEquals("8", request2.getDoorId());
+        assertEquals("1", request1.getDoorId());
     }
 
     @Test
