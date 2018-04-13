@@ -10,7 +10,8 @@ public class StateTest {
     @org.junit.jupiter.api.BeforeEach
     void setup() {
         myStateStatus = StateStatus.MAINMENU;
-        myState = new State(myStateStatus);
+        myState = new State();
+        myState.setNextState(myStateStatus);
     }
 
     @org.junit.jupiter.api.Test
