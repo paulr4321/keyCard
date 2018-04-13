@@ -17,7 +17,7 @@ public class Console {
         String delims = "[,]";
         String[] listOfOptions = options.split(delims);
 
-        System.out.println("Select an option:\n");
+        System.out.println("\nSelect an option:\n");
 
         for (int i = 0; i < listOfOptions.length; i++) {
             System.out.println(i + " : " + listOfOptions[i]);
@@ -91,7 +91,8 @@ public class Console {
      * Prints a list of the requests awaiting approval from security
      * @param list ArrayList of type Requests. Will not work with other types of ArrayList
      */
-    public void printRequests(ArrayList<Request> list){
+    public void printRequests(ArrayList<Request> list)
+    {
         for (int i = 0; i < list.size(); i++) {
             System.out.println("\nRequest ID: " + list.get(i).getId());
             System.out.println("User ID: " + list.get(i).getUserId());
@@ -99,5 +100,21 @@ public class Console {
             System.out.println("Request Status: " + list.get(i).getStatus());
         }
     }
+
+    public void printAllDoors(ArrayList<Door> list)
+    {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("Door: [" + list.get(i).getID() + "] ");
+        }
+    }
+
+    public void printAllUseres(ArrayList<User> list)
+    {
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getId() + " : " + list.get(i).getName() + " [" + list.get(i).getDepartment() + "]");
+        }
+    }
+
+
 
 }

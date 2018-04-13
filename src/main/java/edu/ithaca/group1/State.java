@@ -16,10 +16,10 @@ public class State {
 
         this.nextState = StateStatus.QUIT;
         this.myConsole = new Console();
-        this.myDAO = new DataAccessObject("/src/main/java/edu/ithaca/group1/data/doorData.txt",
-                "/src/main/java/edu/ithaca/group1/data/UserData.txt",
-                "/src/main/java/edu/ithaca/group1/data/permissionData.txt",
-                "/src/main/java/edu/ithaca/group1/data/requestData.txt"
+        this.myDAO = new DataAccessObject("src/main/java/edu/ithaca/group1/data/doorData.txt",
+                "src/main/java/edu/ithaca/group1/data/userData.txt",
+                "src/main/java/edu/ithaca/group1/data/permissionData.txt",
+                "src/main/java/edu/ithaca/group1/data/requestData.txt"
         );
         this.completed = false;
 
