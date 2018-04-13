@@ -15,8 +15,20 @@ public class State {
     public State(StateStatus myState) {
 
         this.nextState = myState;
+        this.myConsole = new Console();
+        this.myDAO = new DataAccessObject("/src/main/java/edu/ithaca/group1/data/doorData.txt",
+                "/src/main/java/edu/ithaca/group1/data/UserData.txt",
+                "/src/main/java/edu/ithaca/group1/data/permissionData.txt",
+                "/src/main/java/edu/ithaca/group1/data/requestData.txt"
+        );
+
 
     }
+
+    /**
+     * Default Constructor
+     */
+    public State(){}
 
 
     /**
