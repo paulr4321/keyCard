@@ -108,12 +108,25 @@ class DataAccessObjectTest {
 
     @Test
     void addPermission() {
-        DAO.addPermission("8", "10003");
+        DAO.addPermission("8", "10001");
+
+        ArrayList<Door> doors = DAO.getAllDoors();
+
+        Door testDoor = doors.get(2);
+        assertEquals(2, testDoor.list.size());
+        assertEquals("10002", testDoor.list.get(0).getId());
     }
 
     @Test
     void addDoor() {
-        DAO.addDoor();
+        for (int i = 1; i < 11; i++) {
+            DAO.addDoor();
+            String id = Integer.toString(12+i);
+            Door testDoor = DAO.getDoorById(id);
+            assertEquals(0, testDoor.list.size());
+            assertEquals(4+i, DAO.getAllDoors().size());
+            assertEquals(id, testDoor.getID());
+        }
     }
 
     @Test
@@ -129,5 +142,29 @@ class DataAccessObjectTest {
     @Test
     void updateRequest() {
         DAO.updateRequest("2", RequestStatus.DENIED);
+    }
+
+    @Test
+    void getDoorById() {
+        assertEquals("2", DAO.getDoorById("2").getID());
+        assertEquals("5", DAO.getDoorById("5").getID());
+        assertEquals("8", DAO.getDoorById("8").getID());
+        assertEquals("12", DAO.getDoorById("12").getID());
+        assertEquals(null, DAO.getDoorById("100"));
+    }
+
+    @Test
+    void getUserById() {
+        assertEquals("10000", DAO.getUserById("10000").getId());
+        assertEquals("10001", DAO.getUserById("10001").getId());
+        assertEquals("10002", DAO.getUserById("10002").getId());
+        assertEquals(null, DAO.getUserById("55555"));
+    }
+
+    @Test
+    void getRequestById() {
+        assertEquals("1", DAO.getRequestById("1").getId());
+        assertEquals("2", DAO.getRequestById("2").getId());
+        assertEquals(null, DAO.getRequestById("6"));
     }
 }

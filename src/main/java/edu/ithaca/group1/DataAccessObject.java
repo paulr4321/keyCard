@@ -35,7 +35,7 @@ public class DataAccessObject {
             if(file.exists()) {
 
                 bfr = new BufferedReader(new FileReader(file));
-                bfr.readLine();
+                bfr.readLine(); //read past id reference at top of file
 
                 while ((line = bfr.readLine()) != null) {
                     list.add(line);
@@ -228,9 +228,10 @@ public class DataAccessObject {
     }
 
     /**
-     * Adds a door to the object's list. saveData must be called in order to write door to file
+     * Adds a door to the database
      */
-    public void addDoor(){
+    public void addDoor()
+    {
         appendToFile(doorDataPath, new String[]{});
     }
 
@@ -239,7 +240,8 @@ public class DataAccessObject {
      * @param name name of the new user
      * @param department department of the new user
      */
-    public void addUser(String name, String department){
+    public void addUser(String name, String department)
+    {
         appendToFile(userDataPath, new String[]{name, department});
     }
 
@@ -271,5 +273,58 @@ public class DataAccessObject {
                 replaceLine(requestDataPath, createFileEntry(req.getId(), fields), createFileEntry(req.getId(), newFields));
             }
         }
+    }
+
+    //NOTE: All of these getById methods could be more effecient with a bin find, as the data is sorted by nature
+
+    /**
+     * Gets a specific door using its id
+     * @param id id of the requested door
+     * @return the requested door, or null if not found
+     */
+    public Door getDoorById(String id)
+    {
+        ArrayList<Door> doors= getAllDoors();
+        for (int i = 0; i < doors.size(); i++) {
+            if (doors.get(i).getID().equals(id))
+            {
+                return doors.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets a specific user using its id
+     * @param id id of the requested user
+     * @return the requested user, or null if not found
+     */
+    public User getUserById(String id)
+    {
+        ArrayList<User> users = getAllUsers();
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getId().equals(id))
+            {
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Gets a specific request using its id
+     * @param id id of the requested request
+     * @return the requested request, or null if not found
+     */
+    public Request getRequestById(String id)
+    {
+        ArrayList<Request> requests = getAllRequests();
+        for (int i = 0; i < requests.size(); i++) {
+            if (requests.get(i).getId().equals(id))
+            {
+                return requests.get(i);
+            }
+        }
+        return null;
     }
 }
