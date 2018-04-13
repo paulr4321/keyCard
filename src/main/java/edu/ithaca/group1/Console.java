@@ -1,5 +1,6 @@
 package edu.ithaca.group1;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -16,7 +17,7 @@ public class Console {
         String delims = "[,]";
         String[] listOfOptions = options.split(delims);
 
-        System.out.println("These are your options:\n");
+        System.out.println("Select an option:\n");
 
         for (int i = 0; i < listOfOptions.length; i++) {
             System.out.println(i + " : " + listOfOptions[i]);
@@ -74,15 +75,9 @@ public class Console {
         String delims = "[a-zA-Z0-9-\\s+]*";
         String field = "";
 
-        in.nextLine();
-
         while(!valid){
-            System.out.println("\nEnter field name:\n");
-
             field = in.nextLine();
-
             if (field.matches(delims)){
-                System.out.println("Field name: " + field);
                 valid = true;
             } else {
                 System.out.println("\nInvalid characters entered, please try again");
@@ -90,6 +85,19 @@ public class Console {
         }
 
         return field;
+    }
+
+    /**
+     * Prints a list of the requests awaiting approval from security
+     * @param list ArrayList of type Requests. Will not work with other types of ArrayList
+     */
+    public void printRequests(ArrayList<Request> list){
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println("\nRequest ID: " + list.get(i).getId());
+            System.out.println("User ID: " + list.get(i).getUserId());
+            System.out.println("Door ID: " + list.get(i).getDoorId());
+            System.out.println("Request Status: " + list.get(i).getStatus());
+        }
     }
 
 }
