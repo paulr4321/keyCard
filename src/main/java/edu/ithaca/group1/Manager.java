@@ -77,7 +77,7 @@ public class Manager extends State {
      */
     public void viewAllUsers()
     {
-        myConsole.printAllUseres(myDAO.getAllUsers());
+        myConsole.printAllUsers(myDAO.getAllUsers());
     }
 
     /**
