@@ -101,6 +101,10 @@ public class Console {
         }
     }
 
+    /**
+     * Prints a list of all doors
+     * @param list ArrayList of the type Door. Only Door. Nothing else
+     */
     public void printAllDoors(ArrayList<Door> list)
     {
         for (int i = 0; i < list.size(); i++) {
@@ -108,7 +112,11 @@ public class Console {
         }
     }
 
-    public void printAllUseres(ArrayList<User> list)
+    /**
+     * Prints list of users
+     * @param list ArrayList of the type User. User.
+     */
+    public void printAllUsers(ArrayList<User> list)
     {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getId() + " : " + list.get(i).getName() + " [" + list.get(i).getDepartment() + "]");
