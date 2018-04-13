@@ -10,9 +10,12 @@ public class Security extends State{
 
     public void run()
     {
-        super.myConsole.listOptions(menuOptions);
-        int selection = super.myConsole.getInputOption(menuOptions);
-        branchApp(selection);
+        int selection = -1;
+        while(selection != 3) {
+            super.myConsole.listOptions(menuOptions);
+            selection = super.myConsole.getInputOption(menuOptions);
+            branchApp(selection);
+        }
     }
 
     /**
@@ -40,13 +43,13 @@ public class Security extends State{
         }
     }
 
-        /**
-         * Prints out a list of requests that are awaiting approval from the security rep
-         */
+    /**
+     * Prints out a list of requests that are awaiting approval from the security rep
+     */
     public void viewPendingRequests()
     {
         ArrayList<Request> allRequests = myDAO.getAllRequests();
-        System.out.println("\n Users waiting approval:\n");
+        System.out.println("\nUsers waiting approval:\n");
 
         myConsole.printRequests(allRequests);
     }

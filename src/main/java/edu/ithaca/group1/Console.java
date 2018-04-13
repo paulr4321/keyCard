@@ -77,9 +77,7 @@ public class Console {
 
         while(!valid){
             field = in.nextLine();
-
             if (field.matches(delims)){
-                System.out.println("Field name: " + field);
                 valid = true;
             } else {
                 System.out.println("\nInvalid characters entered, please try again");
@@ -98,6 +96,7 @@ public class Console {
             System.out.println("\nRequest ID: " + list.get(i).getId());
             System.out.println("User ID: " + list.get(i).getUserId());
             System.out.println("Door ID: " + list.get(i).getDoorId());
+            System.out.println("Request Status: " + list.get(i).getStatus());
         }
     }
 
