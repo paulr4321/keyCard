@@ -4,7 +4,7 @@ public class MainMenu extends State {
     private String menuOptions = "Security Menu,Application Menu,Manager Menu,Quit Application";
 
     public MainMenu(){
-        super(StateStatus.MAINMENU);
+        super();
     }
 
     public void run(){
@@ -33,7 +33,8 @@ public class MainMenu extends State {
                 break;
             case 3:
                 System.out.println("Quitting application...");
-                System.exit(0);
+                super.setCompleted(true);
+                super.setNextState(StateStatus.QUIT);
                 break;
         }
     }

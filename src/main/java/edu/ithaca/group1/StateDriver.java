@@ -6,13 +6,14 @@ public class StateDriver {
 
     public void start(StateStatus state)
     {
+        changeState(state);
         while (!quit)
         {
+            currentState.run();
             if (currentState.getCompleted())
             {
                 changeState(currentState.getNextState());
             }
-            currentState.run();
         }
     }
 
@@ -26,6 +27,10 @@ public class StateDriver {
 
             case SECURITY:
                 currentState = new Security();
+                break;
+
+            case MAINMENU:
+                currentState = new MainMenu();
                 break;
 
             case QUIT:
