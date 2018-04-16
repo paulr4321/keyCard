@@ -67,7 +67,7 @@ public class Application extends State {
         }
         else
         {
-            System.out.println("No user with id: "+ userID + " found. Canceling requests...");
+            System.out.println("No user with id: "+ userID + " found. Canceling request...");
         }
     }
 }
