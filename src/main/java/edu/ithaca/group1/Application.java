@@ -2,10 +2,10 @@ package edu.ithaca.group1;
 import java.io.ByteArrayInputStream;
 
 public class Application extends State {
-    private String menuOptions = "View Available Doors,Submit Application,Return";
+    private String menuOptions = "View Available Doors,Submit Application,Return to Main Menu";
 
     public Application(){
-        super(StateStatus.APPLICATION);
+        super();
     }
 
     public void run(){
@@ -21,7 +21,7 @@ public class Application extends State {
         switch(option){
             case 0:
                 System.out.println("Displaying available doors...");
-                //TODO: call door viewing function
+                myConsole.printAllDoors(myDAO.getAllDoors());
                 System.out.println("\n");
                 break;
             case 1:
@@ -39,32 +39,35 @@ public class Application extends State {
     public void newApp(){
         System.out.println("Request access to a door... enter required information");
         System.out.println("Enter user ID:");
-        String userID = super.myConsole.getInputString();
-        System.out.println("Enter user name:");
-        String userName = super.myConsole.getInputString();
-        System.out.println("Enter user department:");
-        String userDep = super.myConsole.getInputString();
+        String userID = myConsole.getInputString();
         System.out.println("Enter requested door ID:");
-        String doorID = super.myConsole.getInputString();
+        String doorID = myConsole.getInputString();
 
-        System.out.print("Application Review:\n" +
-                "User ID: " + userID + "\n" +
-                "User name: " + userName + "\n" +
-                "User department: " + userDep + "\n" +
-                "Door ID: " + doorID + "\n");
+        User user = myDAO.getUserById(userID);
 
-        System.out.println("Submit application? yes/no");
-        String confirmation = super.myConsole.getInputString();
-        while(!confirmation.equals("yes") && !confirmation.equals("no")){
-            System.out.println("Please enter yes/no");
-            confirmation = super.myConsole.getInputString();
+        if (user != null) {
+            System.out.print("Application Review:\n" +
+                    "User ID: " + user.getId() + "\n" +
+                    "User name: " + user.getName() + "\n" +
+                    "User department: " + user.getDepartment() + "\n" +
+                    "Door ID: " + doorID + "\n");
+
+            System.out.println("Submit application? yes/no");
+            String confirmation = myConsole.getInputString();
+            while (!confirmation.equals("yes") && !confirmation.equals("no")) {
+                System.out.println("Please enter yes/no");
+                confirmation = myConsole.getInputString();
+            }
+            if (confirmation.equals("yes")) {
+                myDAO.addRequest(doorID, userID);
+                System.out.println("Your application has been submitted!");
+            } else if (confirmation.equals("no")) {
+                System.out.println("Application deleted");
+            }
         }
-        if(confirmation.equals("yes")){
-            //TODO: format application information and send to DAO to be written
-            System.out.println("Your application has been submitted!");
-        }
-        else if(confirmation.equals("no")){
-            System.out.println("Application deleted");
+        else
+        {
+            System.out.println("No user with id: "+ userID + " found. Canceling requests...");
         }
     }
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Security extends State{
 
-    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,Quit";
+    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,Return to Main Menu";
 
     public Security(){ }
 
@@ -49,9 +49,25 @@ public class Security extends State{
     public void viewPendingRequests()
     {
         ArrayList<Request> allRequests = myDAO.getAllRequests();
-        System.out.println("\nUsers waiting approval:\n");
+        ArrayList<Request> pending = new ArrayList<Request>();
 
-        myConsole.printRequests(allRequests);
+        for (int i = 0; i < allRequests.size(); i++) {
+            Request req = allRequests.get(i);
+            if (req.getStatus() == RequestStatus.NEW)
+            {
+                pending.add(req);
+            }
+        }
+        if (pending.size() > 0)
+        {
+            System.out.println("\nPermission requests waiting approval:\n");
+            myConsole.printRequests(pending);
+        }
+        else
+        {
+            System.out.println("No pending permission requests.");
+        }
+
     }
 
     /**
@@ -63,7 +79,7 @@ public class Security extends State{
         String requestId = myConsole.getInputString();
 
         myDAO.updateRequest(requestId, RequestStatus.SECURITY_CLEARED);
-        System.out.println("Request #" + requestId + " has been approved.\n");
+        System.out.println("Request #" + requestId + " has been cleared for manager approval.\n");
     }
 
     /**
