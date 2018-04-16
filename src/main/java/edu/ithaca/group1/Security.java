@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Security extends State{
 
-    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,Quit";
+    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,Return to Main Menu";
 
     public Security(){ }
 
@@ -49,9 +49,25 @@ public class Security extends State{
     public void viewPendingRequests()
     {
         ArrayList<Request> allRequests = myDAO.getAllRequests();
-        System.out.println("\nUsers waiting approval:\n");
+        ArrayList<Request> pending = new ArrayList<Request>();
 
-        myConsole.printRequests(allRequests);
+        for (int i = 0; i < allRequests.size(); i++) {
+            Request req = allRequests.get(i);
+            if (req.getStatus() == RequestStatus.NEW)
+            {
+                pending.add(req);
+            }
+        }
+        if (pending.size() > 0)
+        {
+            System.out.println("\nPermission requests waiting approval:\n");
+            myConsole.printRequests(pending);
+        }
+        else
+        {
+            System.out.println("No pending permission requests.");
+        }
+
     }
 
     /**
@@ -61,9 +77,23 @@ public class Security extends State{
     {
         System.out.println("Enter the request ID");
         String requestId = myConsole.getInputString();
-
-        myDAO.updateRequest(requestId, RequestStatus.SECURITY_CLEARED);
-        System.out.println("Request #" + requestId + " has been approved.\n");
+        Request req = myDAO.getRequestById(requestId);
+        if (req != null)
+        {
+            if (req.getStatus() == RequestStatus.NEW)
+            {
+                myDAO.updateRequest(requestId, RequestStatus.SECURITY_CLEARED);
+                System.out.println("Request #" + req.getId() + " has been cleared for manager approval.\n");
+            }
+            else
+            {
+                System.out.println("Request #" + req.getId() + " does not need approval at this time.");
+            }
+        }
+        else
+        {
+            System.out.println("No request with id: " + requestId + " found.");
+        }
     }
 
     /**
@@ -73,8 +103,22 @@ public class Security extends State{
     {
         System.out.println("Enter the request ID");
         String requestId = myConsole.getInputString();
-
-        myDAO.updateRequest(requestId, RequestStatus.DENIED);
-        System.out.println("Request #" + requestId + " has been denied.\n");
+        Request req = myDAO.getRequestById(requestId);
+        if (req != null)
+        {
+            if (req.getStatus() == RequestStatus.NEW)
+            {
+                myDAO.updateRequest(requestId, RequestStatus.DENIED);
+                System.out.println("Request #" + req.getId() + " has been denied.\n");
+            }
+            else
+            {
+                System.out.println("Request #" + req.getId() + " cannot be denied at this time.");
+            }
+        }
+        else
+        {
+            System.out.println("No request with id: " + requestId + " found.");
+        }
     }
 }

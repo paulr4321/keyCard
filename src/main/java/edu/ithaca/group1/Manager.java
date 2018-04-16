@@ -4,10 +4,9 @@ import java.util.ArrayList;
 
 public class Manager extends State {
 
-    private String menuOptions = "View Approved Requests,View All Users,View All Doors,Add User,Add Door,Add Permission,Quit";
-    private ArrayList<Request> approvedRequests = myDAO.getAllRequests();
+    private String menuOptions = "View Approved Requests,View All Users,View All Doors,Add User,Add Door,Add Permission,Deny Permission,Return to Main Menu";
 
-    public Manager(){ }
+    public Manager(){}
 
     /**
      * Starts control flow and modifies approvedRequest so that it only contains requests
@@ -15,14 +14,8 @@ public class Manager extends State {
      */
     public void run()
     {
-        for (int i = 0; i < approvedRequests.size(); i++) {
-            if (approvedRequests.get(i).getStatus() == RequestStatus.DENIED) {
-                approvedRequests.remove(i);
-            }
-        }
-
         int selection = -1;
-        while(selection != 6){
+        while(selection != 7){
             super.myConsole.listOptions(menuOptions);
             selection = super.myConsole.getInputOption(menuOptions);
             branchApp(selection);
@@ -37,7 +30,7 @@ public class Manager extends State {
     {
         switch(option){
             case 0:
-                viewApprovedRequests(approvedRequests);
+                viewApprovedRequests();
                 break;
             case 1:
                 viewAllUsers();
@@ -55,6 +48,9 @@ public class Manager extends State {
                 addPermission();
                 break;
             case 6:
+                denyPermission();
+                break;
+            case 7:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);
@@ -64,12 +60,28 @@ public class Manager extends State {
 
     /**
      * Prints out a list of requests that have been approved by the security rep
-     * @param approvedRequests
      */
-    public void viewApprovedRequests(ArrayList<Request> approvedRequests)
+    public void viewApprovedRequests()
     {
-        System.out.println("\nList of approved Requests:\n");
-        myConsole.printRequests(approvedRequests);
+        ArrayList<Request> requests = myDAO.getAllRequests();
+
+        ArrayList<Request> approved = new ArrayList<Request>();
+        for (int i = 0; i < requests.size(); i++) {
+            if (requests.get(i).getStatus() == RequestStatus.SECURITY_CLEARED)
+            {
+                approved.add(requests.get(i));
+            }
+        }
+
+        if (approved.size() > 0)
+        {
+            System.out.println("\nList of approved Requests:\n");
+            myConsole.printRequests(approved);
+        }
+        else
+        {
+            System.out.println("No pending requests.");
+        }
     }
 
     /**
@@ -118,17 +130,55 @@ public class Manager extends State {
      */
     public void addPermission()
     {
-        System.out.println("Enter user ID:\n");
-        String userID = myConsole.getInputString();
+        System.out.println("Enter request ID:\n");
+        String requestID = myConsole.getInputString();
 
-        System.out.println("Enter door ID:\n");
-        String doorID = myConsole.getInputString();
+        Request req = myDAO.getRequestById(requestID);
 
-        myDAO.addPermission(doorID, userID);
+        if (req != null)
+        {
+            if (req.getStatus() == RequestStatus.SECURITY_CLEARED) {
+                myDAO.addPermission(req.getDoorId(), req.getUserId());
+                myDAO.updateRequest(req.getId(), RequestStatus.ADDED);
 
-        String name = myDAO.getUserById(userID).getName();
-
-        System.out.println(name + " now has access to door [" + doorID + "]");
+                System.out.println(myDAO.getUserById(req.getUserId()).getName() + " now has access to door [" + req.getDoorId() + "]");
+            }
+            else
+            {
+                System.out.println("Request #" + req.getId() + " cannot be granted at this time.");
+            }
+        }
+        else
+        {
+            System.out.println("No request with that id found.");
+        }
     }
 
+    /**
+     * Grants a user access to a specific door
+     */
+    public void denyPermission()
+    {
+        System.out.println("Enter request ID:\n");
+        String requestID = myConsole.getInputString();
+
+        Request req = myDAO.getRequestById(requestID);
+
+        if (req != null)
+        {
+            if (req.getStatus() == RequestStatus.SECURITY_CLEARED) {
+                myDAO.updateRequest(req.getId(), RequestStatus.DENIED);
+
+                System.out.println("Request by user " + myDAO.getUserById(req.getUserId()).getName() + " to door [" + req.getDoorId() + "] denied.");
+            }
+            else
+            {
+                System.out.println("Request #" + req.getId() + " cannot be denied at this time.");
+            }
+        }
+        else
+        {
+            System.out.println("No request with that id found.");
+        }
+    }
 }
