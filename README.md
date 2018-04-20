@@ -36,9 +36,9 @@
 <h4>Sprint 1:</h4> Design a door that given a User ID can either grant or deny access. <br>
 <a href="https://drive.google.com/open?id=1ioKrIsPzj_Qx1S29JXjQ8oasrmSkIhZ8" target="_blank">Diagrams</a> <br>
 <a href="https://drive.google.com/open?id=1iCmnYO0t3EkE7W1LOHyIvmM276L2LTNH41HdcP9hfNE" target="_blank">Review Notes</a> <br>
-<a href="https://drive.google.com/open?id=1Tb0tsgK87yBSG3024-oeEL2KwOporxNpCx1GOIYB81s" target="_blank">Retrospective Notes</a> <br>
+<a href="https://drive.google.com/open?id=1Tb0tsgK87yBSG3024-oeEL2KwOporxNpCx1GOIYB81s" target="_blank">Retrospective Agenda and Notes</a> <br>
 
 <h4>Sprint 2:</h4> Multiple views: One for user to request permissions, one for security rep to review requests and approve or deny them, and one for the manager to add approved requests.<br>
 <a href="https://drive.google.com/open?id=10qDAGomSN0yZDXwBpHtdP1y3IK7lVqkg" target="_blank">Diagrams</a> <br>
-<a href="https://drive.google.com/open?id=1Cn7M8kBUx1TLvQu708VXMkk76jaqTJ9g0m6dPkJHpEE" target="_blank">Review Notes</a> <br>
-<a href="https://drive.google.com/open?id=1IzJgSj2vcdEQp0K_ol4MOgQOs62ouJOgfKnZA9E3lRw" target="_blank">Retrospective Notes</a> <br>
+<a href="https://drive.google.com/open?id=1IzJgSj2vcdEQp0K_ol4MOgQOs62ouJOgfKnZA9E3lRw" target="_blank">Review Notes</a> <br>
+<a href="https://drive.google.com/open?id=1Cn7M8kBUx1TLvQu708VXMkk76jaqTJ9g0m6dPkJHpEE" target="_blank">Retrospective Agenda and Notes</a> <br>
