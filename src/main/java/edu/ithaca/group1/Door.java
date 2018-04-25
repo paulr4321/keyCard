@@ -9,11 +9,13 @@ public class Door {
     public boolean opened;
     public ArrayList<User> list = new ArrayList<User>();
     public String idDoor;
+    public String department;
 
-    public Door(String id, User[] userList)
+    public Door(String id, User[] userList, String department)
     {
-        list.addAll(Arrays.asList(userList));
-        idDoor = id;
+        this.list.addAll(Arrays.asList(userList));
+        this.idDoor = id;
+        this.department = department;
     }
 
     /**
@@ -138,7 +140,17 @@ public class Door {
         opened = false;
     }
 
+    /**
+     * Sets department field for the door.
+     * @param newDepartment String for the new department
+     */
+    public void setDepartment(String newDepartment) { department = newDepartment; }
 
+    /**
+     * Gets department for the door
+     * @return door department
+     */
+    public String getDepartment(){ return department; }
 
 
 

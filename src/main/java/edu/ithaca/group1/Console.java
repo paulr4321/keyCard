@@ -108,7 +108,7 @@ public class Console {
     public void printAllDoors(ArrayList<Door> list)
     {
         for (int i = 0; i < list.size(); i++) {
-            System.out.println("Door: [" + list.get(i).getID() + "] ");
+            System.out.println("Door: " + list.get(i).getID() + " [" + list.get(i).getDepartment() + "] ");
         }
     }
 

@@ -118,7 +118,7 @@ class DataAccessObjectTest {
     @Test
     void addDoor() {
         for (int i = 1; i < 11; i++) {
-            DAO.addDoor();
+            DAO.addDoor("Health");
             String id = Integer.toString(12+i);
             Door testDoor = DAO.getDoorById(id);
             assertEquals(0, testDoor.list.size());

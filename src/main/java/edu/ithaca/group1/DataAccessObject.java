@@ -178,6 +178,8 @@ public class DataAccessObject {
 
             String doorId = fields[0];
 
+            String department = fields[1];
+
             ArrayList<User> doorUsers = new ArrayList<User>();
 
             for (int j = 0; j < permissionData.size(); j++) {
@@ -193,7 +195,7 @@ public class DataAccessObject {
                 }
             }
 
-            doors.add(new Door(doorId, doorUsers.toArray(new User[doorUsers.size()])));
+            doors.add(new Door(doorId, doorUsers.toArray(new User[doorUsers.size()]), department));
         }
 
         return doors;
@@ -230,9 +232,9 @@ public class DataAccessObject {
     /**
      * Adds a door to the database
      */
-    public void addDoor()
+    public void addDoor(String department)
     {
-        appendToFile(doorDataPath, new String[]{});
+        appendToFile(doorDataPath, new String[]{ department });
     }
 
     /**
