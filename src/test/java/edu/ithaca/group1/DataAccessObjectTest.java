@@ -20,7 +20,7 @@ class DataAccessObjectTest {
             //reset door data file
             File doors = new File("src/test/java/edu/ithaca/group1/data/testDoorData.txt");
             FileWriter writer = new FileWriter(doors, false);
-            writer.write("#13\n2\n5\n8\n12");
+            writer.write("#13\n2%Health\n5%Health\n8%Science\n12%Music");
             writer.close();
 
             //reset user data file
@@ -117,8 +117,11 @@ class DataAccessObjectTest {
 
     @Test
     void addDoor() {
+
+        String department = "Music";
+
         for (int i = 1; i < 11; i++) {
-            DAO.addDoor("Health");
+            DAO.addDoor(department);
             String id = Integer.toString(12+i);
             Door testDoor = DAO.getDoorById(id);
             assertEquals(0, testDoor.list.size());
