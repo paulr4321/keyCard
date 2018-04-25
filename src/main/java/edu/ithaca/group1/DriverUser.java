@@ -13,9 +13,11 @@ public class DriverUser
 		
 		String s = null;
 
+		String department = "Thing";
+
 		User[] userList = {};
 
-		Door door = new Door("", userList);
+		Door door = new Door("", userList, department);
 
 		boolean check;
 

@@ -117,12 +117,15 @@ public class Manager extends State {
     }
 
     /**
-     * Adds door
+     * Asks user to input department field for door. Adds a door
+     * with desired department field
      */
     public void addDoor()
     {
-        myDAO.addDoor();
-        System.out.println("Door has been added.");
+        System.out.println("Enter department for door:\n");
+        String department = myConsole.getInputString();
+        myDAO.addDoor(department);
+        System.out.println("\nDoor [" + department + "] has been added.");
     }
 
     /**

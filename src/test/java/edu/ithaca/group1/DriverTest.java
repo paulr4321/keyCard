@@ -29,6 +29,7 @@ public class DriverTest
 	public void setupTest() throws Exception {
 
 		String s = null;
+		String department = "Health";
 
 		Paul = new User("12345", "Paul", "");
 		Vaseal = new User("54321", "Vaseal", "");
@@ -40,7 +41,7 @@ public class DriverTest
 		Rob = new User("11112", "Rob", "");
 		
 		userList = new User[]{Paul, Vaseal, Ben, Fernando, Kevin};
-		door = new Door("", userList);
+		door = new Door("", userList, department);
 
 		manager = new DriverManager();
 		
