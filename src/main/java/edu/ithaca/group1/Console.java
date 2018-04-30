@@ -93,6 +93,9 @@ public class Console {
      */
     public void printRequests(ArrayList<Request> list)
     {
+
+        //TODO: Print User Status
+
         for (int i = 0; i < list.size(); i++) {
             System.out.println("\nRequest ID: " + list.get(i).getId());
             System.out.println("User ID: " + list.get(i).getUserId());
