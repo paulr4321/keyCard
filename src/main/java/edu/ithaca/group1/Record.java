@@ -27,7 +27,7 @@ public class Record {
         return outcome;
     }
 
-    private LocalDateTime getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
