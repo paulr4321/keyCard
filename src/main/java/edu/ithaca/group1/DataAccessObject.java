@@ -13,10 +13,47 @@ public class DataAccessObject {
     private String swipeRecordDataPath;
 
     public DataAccessObject(String doorDataPath, String userDataPath, String permissionDataPath, String requestDataPath){
-        this.doorDataPath = doorDataPath;
-        this.userDataPath = userDataPath;
-        this.permissionDataPath = permissionDataPath;
-        this.requestDataPath = requestDataPath;
+        this.doorDataPath = "src/main/java/edu/ithaca/group1/data/doorData.txt";
+        this.userDataPath = "src/main/java/edu/ithaca/group1/data/userData.txt";
+        this.permissionDataPath = "src/main/java/edu/ithaca/group1/data/permissionData.txt";
+        this.requestDataPath = "src/main/java/edu/ithaca/group1/data/requestData.txt";
+        this.swipeRecordDataPath = "src/main/java/edu/ithaca/group1/data/swipeRecordData.txt";
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setSwipeRecordDataPath(String path)
+    {
+        this.swipeRecordDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setDoorDataPath(String path)
+    {
+        this.swipeRecordDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setPermissionDataPath(String path)
+    {
+        this.swipeRecordDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setRequestDataDataPath(String path)
+    {
+        this.swipeRecordDataPath = path;
     }
 
 
