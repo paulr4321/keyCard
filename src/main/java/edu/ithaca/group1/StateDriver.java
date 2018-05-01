@@ -33,6 +33,9 @@ public class StateDriver {
             case APPLICATION:
                 currentState = new Application();
                 break;
+            case SWIPE:
+                currentState = new Swipe();
+                break;
             case QUIT:
                 quit = true;
                 break;

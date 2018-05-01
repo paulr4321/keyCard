@@ -1,7 +1,7 @@
 package edu.ithaca.group1;
 
 public class MainMenu extends State {
-    private String menuOptions = "Security Menu,Application Menu,Manager Menu,Quit Application";
+    private String menuOptions = "Security Menu,Application Menu,Manager Menu,Swipe Menu,Quit Application";
 
     public MainMenu(){
         super();
@@ -32,6 +32,11 @@ public class MainMenu extends State {
                 super.setNextState(StateStatus.MANAGER);
                 break;
             case 3:
+                System.out.println("Starting swipe view...");
+                super.setCompleted(true);
+                super.setNextState(StateStatus.SWIPE);
+                break;
+            case 4:
                 System.out.println("Quitting application...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.QUIT);
