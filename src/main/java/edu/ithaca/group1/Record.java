@@ -43,7 +43,7 @@ public class Record {
         this.outcome = outcome;
     }
 
-    private void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
 }
