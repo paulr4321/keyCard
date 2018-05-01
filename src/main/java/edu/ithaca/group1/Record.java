@@ -8,11 +8,11 @@ public class Record {
     private LocalDateTime timestamp;
     private Boolean outcome;
 
-    // outcome of swipe record is false by default, use setRecordStatus() to change outcome
-    public Record(String userId, String doorId) {
+    public Record(String userId, String doorId, LocalDateTime timestamp, Boolean outcome) {
         this.doorId = doorId;
         this.userId = userId;
-        this.outcome = false;
+        this.timestamp = timestamp;
+        this.outcome = outcome;
     }
 
     public String getUserId() {
@@ -27,7 +27,7 @@ public class Record {
         return outcome;
     }
 
-    private LocalDateTime getTimestamp() {
+    public LocalDateTime getTimestamp() {
         return timestamp;
     }
 
@@ -43,32 +43,7 @@ public class Record {
         this.outcome = outcome;
     }
 
-    private void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
-    }
-
-    private void generateTimeStamp() {
-        timestamp = LocalDateTime.now();
-    }
-
-    // Use this method to set the outcome of a swipe, the timestamp is generated when the record status is set
-    public void setRecordStatus(Boolean status){
-        this.outcome = status;
-        generateTimeStamp();
-    }
-
-    // Prints the record in format: "Approved/Denied on hh:mm MM/DD/YYY"
-    public String toString(){
-        String status;
-        int month = this.timestamp.getMonth().getValue();
-        int day = this.timestamp.getDayOfMonth();
-        int year = this.timestamp.getYear();
-        int hour = this.timestamp.getHour();
-        int min = this.timestamp.getMinute();
-
-        if (outcome) status = "Approved";
-        else status = "Denied";
-
-        return status + " on " + hour + ":" + min + " " + month + "/" + day + "/" + year;
     }
 }
