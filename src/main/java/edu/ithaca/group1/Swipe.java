@@ -19,6 +19,7 @@ public class Swipe extends State {
             super.myConsole.listOptions(options);
             userSelection = super.myConsole.getInputOption(options);
             branchApp(userSelection);
+
         }
     }
 
@@ -31,7 +32,7 @@ public class Swipe extends State {
 
         switch(option){
             case 0:
-                authorizeSwipe();
+                boolean temp = authorizeSwipe();
                 break;
             case 1:
                 System.out.println("Returning to main menu...");
@@ -48,15 +49,64 @@ public class Swipe extends State {
      * or denied
      */
     public boolean authorizeSwipe(){
+
+        boolean authStatus = false;
         ArrayList<Door> myDoors = myDAO.getAllDoors();
         myConsole.printAllDoors(myDoors);
-        System.out.println("Enter User ID");
-        String userID = myConsole.getInputString();
+        String userID;
+        String doorID;
 
-        // TODO - ask team whether authentication should happen in DAO
-        //
+        // checks for valid user id
+        while (true) {
+            System.out.println("Enter User ID");
+            userID = myConsole.getInputString();
+
+            if (myDAO.getUserById(userID) != null) {
+                break;
+            }
+            System.out.println("Invalid User ID.. ");
+        }
+
+        // checks for valid door id
+        while (true) {
+            System.out.println("Enter Door ID");
+            doorID = myConsole.getInputString();
+
+            if (myDAO.getUserById(userID) != null) {
+                break;
+            }
+            System.out.println("Invalid Door ID.. ");
+        }
 
 
-        return true;
+        ArrayList<Door> myDoorList = super.myDAO.getAllDoors();
+
+        for (int i = 0; i < myDoorList.size(); i++) {
+
+            if (myDoorList.get(i).idDoor.equals(doorID)) {
+
+                ArrayList<User> myDoorUsers = myDoorList.get(i).list;
+
+                for (int j = 0; j < myDoorUsers.size(); j++){
+
+                    if (myDoorUsers.get(j).getId().equals(userID)) {
+
+                        System.out.println("Access Granted");
+                        authStatus = true;
+                        return authStatus;
+
+                        //TODO - Add to Swipe history
+                    }
+                }
+            }
+        }
+
+        if (!authStatus) {
+            System.out.println("Access Denied");
+            System.out.println("Returning to main menu...");
+            super.setCompleted(true);
+            super.setNextState(StateStatus.MAINMENU);
+        }
+        return authStatus;
     }
 }
