@@ -200,4 +200,10 @@ class DataAccessObjectTest {
         assertEquals("2", DAO.getRequestById("2").getId());
         assertEquals(null, DAO.getRequestById("6"));
     }
+
+    @Test
+    void addSwipeRecord()
+    {
+
+    }
 }
