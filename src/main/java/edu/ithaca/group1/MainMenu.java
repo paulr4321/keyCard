@@ -7,6 +7,9 @@ public class MainMenu extends State {
         super();
     }
 
+    /**
+     * Run method overwritten from state class, runs the main menu state.
+     */
     public void run(){
         int selection = -1;
         super.myConsole.listOptions(menuOptions);
@@ -14,6 +17,11 @@ public class MainMenu extends State {
         branchMenu(selection);
     }
 
+    /**
+     * Branches the application menu control flow to different sub menus. One case for displaying
+     * all doors, one for submitting a new application and one for returning to the main menu.
+     * @param option boolean, determines which menu to display
+     */
     public void branchMenu(int option){
         switch(option){
             case 0:

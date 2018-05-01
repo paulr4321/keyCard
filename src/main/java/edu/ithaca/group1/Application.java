@@ -1,5 +1,4 @@
 package edu.ithaca.group1;
-import java.io.ByteArrayInputStream;
 
 public class Application extends State {
     private String menuOptions = "View Available Doors,Submit Application,Return to Main Menu";
@@ -8,6 +7,9 @@ public class Application extends State {
         super();
     }
 
+    /**
+     * Run method overwritten from state class, runs the application state.
+     */
     public void run(){
         int selection = -1;
         while(selection != 2) {
@@ -17,6 +19,11 @@ public class Application extends State {
         }
     }
 
+    /**
+     * Branches the application menu control flow to different sub menus. One case for displaying
+     * all doors, one for submitting a new application and one for returning to the main menu.
+     * @param option boolean, determines which menu to display
+     */
     public void branchApp(int option){
         switch(option){
             case 0:
@@ -36,6 +43,11 @@ public class Application extends State {
         }
     }
 
+    /**
+     * Guides user to submit a new application. Once the new application is created, the user
+     * will have an option to submit the application or to cancel it. If the user for the request is
+     * not found, the application is cancelled.
+     */
     public void newApp(){
         System.out.println("Request access to a door... enter required information");
         System.out.println("Enter user ID:");
