@@ -1,10 +1,13 @@
 package edu.ithaca.group1;
 
+import java.util.ArrayList;
+
 public class User {
 
     private String id;
     private String name;
     private String department;
+    private ArrayList<Permissions> permissions = new ArrayList<>();
 
     /**
      * Default constructor
@@ -65,4 +68,19 @@ public class User {
     {
         return department;
     }
+
+    /**
+     * Populates arraylist of permissions that belong to the user
+     * @param p Permissions class
+     */
+    public void addPermissions(Permissions p)
+    {
+        permissions.add(p);
+    }
+
+    /**
+     * Gets permissions from user
+     * @return arraylist of permissions
+     */
+    public ArrayList<Permissions> getPermissions(){ return permissions; }
 }
