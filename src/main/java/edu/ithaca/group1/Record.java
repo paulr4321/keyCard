@@ -46,8 +46,4 @@ public class Record {
     private void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
     }
-
-    private void generateTimeStamp() {
-        timestamp = LocalDateTime.now();
-    }
 }
