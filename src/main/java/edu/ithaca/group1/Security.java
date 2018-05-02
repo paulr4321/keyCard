@@ -1,17 +1,18 @@
 package edu.ithaca.group1;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Security extends State{
 
-    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,Return to Main Menu";
+    private String menuOptions = "View Pending Requests,Approve Request,Deny Request,View door history,Return to Main Menu";
 
     public Security(){ }
 
     public void run()
     {
         int selection = -1;
-        while(selection != 3) {
+        while(selection != 4) {
             super.myConsole.listOptions(menuOptions);
             selection = super.myConsole.getInputOption(menuOptions);
             branchApp(selection);
@@ -36,6 +37,9 @@ public class Security extends State{
                 denyRequest();
                 break;
             case 3:
+                printDoorHistory();
+                break;
+            case 4:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);
@@ -68,6 +72,31 @@ public class Security extends State{
             System.out.println("No pending permission requests.");
         }
 
+    }
+
+    private void printDoorHistory()
+    {
+        System.out.println("Enter the door ID");
+        String doorId = myConsole.getInputString();
+        Door door = myDAO.getDoorById(doorId);
+
+        if (door != null)
+        {
+            ArrayList<Record> records = myDAO.getRecordsByDoor(doorId);
+            if (records.size() > 0) {
+                System.out.println("\nDoor history for door" + door.getID() + ":\n");
+                for (int i = 0; i < records.size(); i++) {
+                    Record rec = records.get(i);
+                    System.out.println("user: " + rec.getUserId() + ", Time: " + rec.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME) + ", Result: " + (rec.getOutcome() ? "granted" : "denied"));
+                }
+            } else {
+                System.out.println("No Records for this door.");
+            }
+        }
+        else
+        {
+            System.out.println("No door found with ID: "+doorId);
+        }
     }
 
     /**
