@@ -14,8 +14,11 @@ class DataAccessObjectTest {
 
     @BeforeEach
     void setUp() {
-        DAO = new DataAccessObject("src/test/java/edu/ithaca/group1/data/testDoorData.txt", "src/test/java/edu/ithaca/group1/data/testUserData.txt", "src/test/java/edu/ithaca/group1/data/testPermissionData.txt", "src/test/java/edu/ithaca/group1/data/testRequestData.txt");
-
+        DAO = new DataAccessObject("", "", "", "");
+        DAO.setDoorDataPath("src/test/java/edu/ithaca/group1/data/testDoorData.txt");
+        DAO.setUserDataPath("src/test/java/edu/ithaca/group1/data/testUserData.txt");
+        DAO.setPermissionDataPath("src/test/java/edu/ithaca/group1/data/testPermissionData.txt");
+        DAO.setRequestDataPath("src/test/java/edu/ithaca/group1/data/testRequestData.txt");
         try {
             //reset door data file
             File doors = new File("src/test/java/edu/ithaca/group1/data/testDoorData.txt");
@@ -199,5 +202,11 @@ class DataAccessObjectTest {
         assertEquals("1", DAO.getRequestById("1").getId());
         assertEquals("2", DAO.getRequestById("2").getId());
         assertEquals(null, DAO.getRequestById("6"));
+    }
+
+    @Test
+    void addSwipeRecord()
+    {
+
     }
 }

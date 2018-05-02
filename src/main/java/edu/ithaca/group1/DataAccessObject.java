@@ -2,6 +2,8 @@ package edu.ithaca.group1;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -10,12 +12,60 @@ public class DataAccessObject {
     private String userDataPath;
     private String permissionDataPath;
     private String requestDataPath;
+    private String swipeRecordDataPath;
 
     public DataAccessObject(String doorDataPath, String userDataPath, String permissionDataPath, String requestDataPath){
-        this.doorDataPath = doorDataPath;
-        this.userDataPath = userDataPath;
-        this.permissionDataPath = permissionDataPath;
-        this.requestDataPath = requestDataPath;
+        this.doorDataPath = "src/main/java/edu/ithaca/group1/data/doorData.txt";
+        this.userDataPath = "src/main/java/edu/ithaca/group1/data/userData.txt";
+        this.permissionDataPath = "src/main/java/edu/ithaca/group1/data/permissionData.txt";
+        this.requestDataPath = "src/main/java/edu/ithaca/group1/data/requestData.txt";
+        this.swipeRecordDataPath = "src/main/java/edu/ithaca/group1/data/swipeRecordData.txt";
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setSwipeRecordDataPath(String path)
+    {
+        this.swipeRecordDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setDoorDataPath(String path)
+    {
+        this.doorDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setPermissionDataPath(String path)
+    {
+        this.permissionDataPath = path;
+    }
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setRequestDataPath(String path)
+    {
+        this.requestDataPath = path;
+    }
+
+
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setUserDataPath(String path)
+    {
+        this.userDataPath = path;
     }
 
     /**
@@ -219,6 +269,28 @@ public class DataAccessObject {
     }
 
     /**
+     * Gets all the swipeRecords in the system
+     * @return an ArrayList of all the pending request objects
+     */
+    public ArrayList<Record> getAllSwipeRecords()
+    {
+            ArrayList<Record> swipeRecords = new ArrayList<Record>();
+
+            ArrayList<String> data = getData(swipeRecordDataPath);
+
+            for (int i = 0; i < data.size(); i++) {
+                String[] fields = data.get(i).split("%");
+
+                String str = fields[3];
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+                LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
+
+                swipeRecords.add(new Record(fields[0], fields[1], dateTime, Boolean.parseBoolean(fields[3])));
+            }
+            return swipeRecords;
+    }
+
+    /**
      * Saves the permission to persistent data. DOES NOT handle adding the user to the door's user list.
      * However, the next time a DataAccessObject is instantiated that permission will be present
      *
@@ -245,6 +317,18 @@ public class DataAccessObject {
     public void addUser(String name, String department)
     {
         appendToFile(userDataPath, new String[]{name, department});
+    }
+
+    /**
+     * Adds a swipe record to the database
+     * @param userId id of the user that swiped
+     * @param doorId id of the door that was swiped on
+     * @param date date of the swipe
+     * @param result whether or not the user was permitted entry
+     */
+    public void addSwipeRecord(String userId, String doorId, LocalDateTime date, boolean result)
+    {
+        appendToFile(swipeRecordDataPath, new String[]{doorId, userId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
     }
 
     /**
@@ -328,5 +412,18 @@ public class DataAccessObject {
             }
         }
         return null;
+    }
+
+    public ArrayList<Record> getRecordsByDoor(String doorId)
+    {
+        ArrayList<Record> records = getAllSwipeRecords();
+        ArrayList<Record> toReturn = new ArrayList<>();
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getDoorId().equals(doorId))
+            {
+                toReturn.add(records.get(i));
+            }
+        }
+        return toReturn;
     }
 }
