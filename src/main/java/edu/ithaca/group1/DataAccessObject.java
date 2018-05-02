@@ -37,7 +37,7 @@ public class DataAccessObject {
      */
     public void setDoorDataPath(String path)
     {
-        this.swipeRecordDataPath = path;
+        this.doorDataPath = path;
     }
 
     /**
@@ -46,7 +46,7 @@ public class DataAccessObject {
      */
     public void setPermissionDataPath(String path)
     {
-        this.swipeRecordDataPath = path;
+        this.permissionDataPath = path;
     }
 
     /**
@@ -55,7 +55,7 @@ public class DataAccessObject {
      */
     public void setRequestDataPath(String path)
     {
-        this.swipeRecordDataPath = path;
+        this.requestDataPath = path;
     }
 
 
