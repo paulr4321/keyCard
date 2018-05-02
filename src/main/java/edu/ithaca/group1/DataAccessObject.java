@@ -2,6 +2,8 @@ package edu.ithaca.group1;
 
 import java.io.*;
 import java.lang.reflect.Array;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 
@@ -51,12 +53,20 @@ public class DataAccessObject {
      * Sets the file that will be written to and read from for swipeRecord information
      * @param path the file to be referenced by this object
      */
-    public void setRequestDataDataPath(String path)
+    public void setRequestDataPath(String path)
     {
         this.swipeRecordDataPath = path;
     }
 
 
+    /**
+     * Sets the file that will be written to and read from for swipeRecord information
+     * @param path the file to be referenced by this object
+     */
+    public void setUserDataPath(String path)
+    {
+        this.userDataPath = path;
+    }
 
     /**
      * Helper method for getting all the data out of a file
@@ -262,18 +272,22 @@ public class DataAccessObject {
      * Gets all the swipeRecords in the system
      * @return an ArrayList of all the pending request objects
      */
-//    public ArrayList<SwipeRecord> getAllSwipeRecords()
-//    {
-//            ArrayList<SwipeRecord> swipeRecords = new ArrayList<SwipeRecord>();
-//
-//            ArrayList<String> data = getData(requestDataPath);
-//
-//            for (int i = 0; i < data.size(); i++) {
-//                String[] fields = data.get(i).split("%");
-//                swipeRecords.add(new SwipeRecord(user, door, date, result));
-//            }
-//            return swipeRecords;
-//    }
+    public ArrayList<Record> getAllSwipeRecords()
+    {
+            ArrayList<Record> swipeRecords = new ArrayList<Record>();
+
+            ArrayList<String> data = getData(swipeRecordDataPath);
+
+            for (int i = 0; i < data.size(); i++) {
+                String[] fields = data.get(i).split("%");
+
+                String str = fields[2];
+                LocalDateTime dateTime = LocalDateTime.parse(str, DateTimeFormatter.ISO_DATE_TIME );
+
+                swipeRecords.add(new Record(fields[0], fields[1], dateTime, Boolean.parseBoolean(fields[3])));
+            }
+            return swipeRecords;
+    }
 
     /**
      * Saves the permission to persistent data. DOES NOT handle adding the user to the door's user list.
@@ -311,9 +325,9 @@ public class DataAccessObject {
      * @param date date of the swipe
      * @param result whether or not the user was permitted entry
      */
-    public void addSwipeRecord(String userId, String doorId, String date, boolean result)
+    public void addSwipeRecord(String userId, String doorId, LocalDateTime date, boolean result)
     {
-        appendToFile(swipeRecordDataPath, new String[]{userId, doorId, date, Boolean.toString(result)});
+        appendToFile(swipeRecordDataPath, new String[]{userId, doorId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
     }
 
     /**
@@ -397,5 +411,18 @@ public class DataAccessObject {
             }
         }
         return null;
+    }
+
+    public ArrayList<Record> getRecordsByDoor(String doorId)
+    {
+        ArrayList<Record> records = getAllSwipeRecords();
+        ArrayList<Record> toReturn = new ArrayList<>();
+        for (int i = 0; i < records.size(); i++) {
+            if (records.get(i).getDoorId().equals(doorId))
+            {
+                toReturn.add(records.get(i));
+            }
+        }
+        return toReturn;
     }
 }

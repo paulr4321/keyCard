@@ -1,10 +1,11 @@
 package edu.ithaca.group1;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Swipe extends State {
 
-    private String options = "Swipe Card,Return to Main Menu";
+    private String options = "Swipe Card,Door History,Return to Main Menu";
 
 
     public Swipe(){}
@@ -15,7 +16,7 @@ public class Swipe extends State {
      */
     public void run(){
         int userSelection = -1;
-        while (userSelection != 1){
+        while (userSelection != 2){
             super.myConsole.listOptions(options);
             userSelection = super.myConsole.getInputOption(options);
             branchApp(userSelection);
@@ -35,11 +36,42 @@ public class Swipe extends State {
                 boolean temp = authorizeSwipe();
                 break;
             case 1:
+                System.out.println("Opening Door History...");
+                doorHistory();
+                break;
+            case 2:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);
                 break;
 
+        }
+    }
+
+    /**
+     * prints out the door history of a specific door specified by the user
+     */
+    public void doorHistory(){
+
+        String doorId;
+        // checks for valid door id
+        while (true) {
+
+            System.out.println("Enter Door ID");
+            doorId = myConsole.getInputString();
+
+            if (myDAO.getDoorById(doorId) != null) {
+                break;
+            }
+            System.out.println("Invalid Door ID.. ");
+        }
+
+        ArrayList<Record> doorRecords = myDAO.getRecordsByDoor(doorId);
+
+        for (int i = 0; i < doorRecords.size(); i++) {
+            System.out.println("User ID: " + doorRecords.get(i).getUserId());
+            System.out.println("Time Stamp: " + doorRecords.get(i).getTimestamp().toString());
+            System.out.println("Access Granted?: " + doorRecords.get(i).getOutcome());
         }
     }
 
@@ -72,7 +104,7 @@ public class Swipe extends State {
             System.out.println("Enter Door ID");
             doorID = myConsole.getInputString();
 
-            if (myDAO.getUserById(userID) != null) {
+            if (myDAO.getDoorById(doorID) != null) {
                 break;
             }
             System.out.println("Invalid Door ID.. ");
@@ -93,9 +125,12 @@ public class Swipe extends State {
 
                         System.out.println("Access Granted");
                         authStatus = true;
-                        return authStatus;
 
-                        //TODO - Add to Swipe history
+                        // create local date time of now
+
+                        myDAO.addSwipeRecord(userID, doorID, LocalDateTime.now(), authStatus);
+
+                        return authStatus;
                     }
                 }
             }
@@ -104,6 +139,7 @@ public class Swipe extends State {
         if (!authStatus) {
             System.out.println("Access Denied");
             System.out.println("Returning to main menu...");
+            myDAO.addSwipeRecord(userID, doorID, LocalDateTime.now(), authStatus);
             super.setCompleted(true);
             super.setNextState(StateStatus.MAINMENU);
         }
