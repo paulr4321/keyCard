@@ -281,8 +281,9 @@ public class DataAccessObject {
             for (int i = 0; i < data.size(); i++) {
                 String[] fields = data.get(i).split("%");
 
-                String str = fields[2];
-                LocalDateTime dateTime = LocalDateTime.parse(str, DateTimeFormatter.ISO_DATE_TIME );
+                String str = fields[3];
+                DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
+                LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
                 swipeRecords.add(new Record(fields[0], fields[1], dateTime, Boolean.parseBoolean(fields[3])));
             }
@@ -327,7 +328,7 @@ public class DataAccessObject {
      */
     public void addSwipeRecord(String userId, String doorId, LocalDateTime date, boolean result)
     {
-        appendToFile(swipeRecordDataPath, new String[]{userId, doorId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
+        appendToFile(swipeRecordDataPath, new String[]{doorId, userId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
     }
 
     /**
