@@ -253,9 +253,17 @@ public class DataAccessObject {
      */
     public void deleteUser(User user)
     {
-    	 String[] fields = new String[]{user.getId()};
-         replaceLine(userDataPath, createFileEntry(user.getId(), fields), "" );
-         replaceLine(permissionDataPath, createFileEntry(user.getId(), fields), "" );
+    	 ArrayList<User> users = getAllUsers();
+
+         for (int i = 0; i < users.size(); i++) {
+             User user = users.get(i);
+             if (user.getId().equals(requestId))
+             {
+                 String[] fields = new String[]{user.getUserId(), user.getName(), user.getDepartment()};
+                 replaceLine(requestDataPath, createFileEntry(user.getId(), fields), " ");
+             }
+         }
+    
      }
 
     /**
