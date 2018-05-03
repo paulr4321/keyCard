@@ -196,10 +196,8 @@ public class Manager extends State {
         System.out.println("Enter Name:");
         String name = myConsole.getInputString();
         System.out.println("Enter Department:");
-        String department = myConsole.getInputString();
-        User user = new User(id, name, department);
 
-        myDAO.deleteUser(user);
+        myDAO.deleteUser(id);
 
         System.out.println(name  + "was deleted.");
     }
