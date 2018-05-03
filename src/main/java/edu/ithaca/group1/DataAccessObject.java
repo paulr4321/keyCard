@@ -259,7 +259,7 @@ public class DataAccessObject {
              User user = users.get(i);
              if (user.getId().equals(userID))
              {
-                 String[] fields = new String[]{user.getUserId(), user.getName(), user.getDepartment()};
+                 String[] fields = new String[]{user.getId(), user.getName(), user.getDepartment()};
                  replaceLine(requestDataPath, createFileEntry(user.getId(), fields), " ");
              }
          }
