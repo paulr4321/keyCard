@@ -200,4 +200,12 @@ class DataAccessObjectTest {
         assertEquals("2", DAO.getRequestById("2").getId());
         assertEquals(null, DAO.getRequestById("6"));
     }
+    @Test
+    void deleteUser() {
+    	User user = new User("10008","Tina Fey", "Writing");
+    	User user = new User("10007","Michael", "Security");
+    	DAO.deleteUser(user);
+        assertEquals(null, DAO.getUserById("10008"));
+        assertEquals(null, DAO.getUserById("10007"));
+    }
 }

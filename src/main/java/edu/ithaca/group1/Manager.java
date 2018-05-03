@@ -51,6 +51,8 @@ public class Manager extends State {
                 denyPermission();
                 break;
             case 7:
+            	deleteUser();
+            case 8:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);
@@ -183,5 +185,22 @@ public class Manager extends State {
         {
             System.out.println("No request with that id found.");
         }
+    }
+    /**
+     * Adds a user by taking in their name and department
+     */
+    public void deleteUser()
+    {
+        System.out.println("Enter ID:");
+        String id = myConsole.getInputString();
+        System.out.println("Enter Name:");
+        String name = myConsole.getInputString();
+        System.out.println("Enter Department:");
+        String department = myConsole.getInputString();
+        User user = new User(id, name, department);
+
+        myDAO.deleteUser(user);
+
+        System.out.println(name  + "was deleted.");
     }
 }

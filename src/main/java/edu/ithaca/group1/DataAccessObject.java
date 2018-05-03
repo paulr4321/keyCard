@@ -246,6 +246,17 @@ public class DataAccessObject {
     {
         appendToFile(userDataPath, new String[]{name, department});
     }
+    /**
+     * Adds a new user to the database
+     * @param name name of the new user
+     * @param department department of the new user
+     */
+    public void deleteUser(User user)
+    {
+    	 String[] fields = new String[]{user.getId()};
+         replaceLine(userDataPath, createFileEntry(user.getId(), fields), "" );
+         replaceLine(permissionDataPath, createFileEntry(user.getId(), fields), "" );
+     }
 
     /**
      * Adds a new request to the database

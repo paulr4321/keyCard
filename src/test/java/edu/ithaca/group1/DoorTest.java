@@ -237,4 +237,5 @@ class DoorTest
         assertEquals("Thing", testDoor.getDepartment(), "Department does not match door department");
     }
 
+
 }
