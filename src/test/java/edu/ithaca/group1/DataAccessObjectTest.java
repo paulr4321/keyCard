@@ -208,8 +208,8 @@ class DataAccessObjectTest {
     	User user3 = new User("10006","Liam", "Fitness");
     	DAO.deleteUser(user);
     	DAO.deleteUser(user2);
-        assertEquals(null, DAO.getUserById("10008"));
-        assertEquals(null, DAO.getUserById("10007"));
+        assertEquals(null, DAO.getUserById("10008").getId());
+        assertEquals(null, DAO.getUserById("10007").getId());
         if(DAO.getUserById("10006").getId()==null){
         	check = false;
         }
