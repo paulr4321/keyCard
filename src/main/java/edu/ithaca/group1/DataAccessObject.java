@@ -251,13 +251,13 @@ public class DataAccessObject {
      * @param name name of the new user
      * @param department department of the new user
      */
-    public void deleteUser(User user)
+    public void deleteUser(String userID)
     {
     	 ArrayList<User> users = getAllUsers();
 
          for (int i = 0; i < users.size(); i++) {
              User user = users.get(i);
-             if (user.getId().equals(requestId))
+             if (user.getId().equals(userID))
              {
                  String[] fields = new String[]{user.getUserId(), user.getName(), user.getDepartment()};
                  replaceLine(requestDataPath, createFileEntry(user.getId(), fields), " ");
