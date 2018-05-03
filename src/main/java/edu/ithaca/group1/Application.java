@@ -49,6 +49,10 @@ public class Application extends State {
      * not found, the application is cancelled.
      */
     public void newApp(){
+
+        myConsole.printAllUsers(myDAO.getAllUsers());
+        myConsole.printAllDoors(myDAO.getAllDoors());
+
         System.out.println("Request access to a door... enter required information");
         System.out.println("Enter user ID:");
         String userID = myConsole.getInputString();

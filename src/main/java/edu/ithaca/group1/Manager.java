@@ -133,7 +133,10 @@ public class Manager extends State {
      */
     public void addPermission()
     {
-        System.out.println("Enter request ID:\n");
+
+        viewApprovedRequests();
+
+        System.out.println("\nEnter request ID:\n");
         String requestID = myConsole.getInputString();
 
         Request req = myDAO.getRequestById(requestID);
@@ -162,7 +165,9 @@ public class Manager extends State {
      */
     public void denyPermission()
     {
-        System.out.println("Enter request ID:\n");
+
+        viewApprovedRequests();
+        System.out.println("\nEnter request ID:\n");
         String requestID = myConsole.getInputString();
 
         Request req = myDAO.getRequestById(requestID);
