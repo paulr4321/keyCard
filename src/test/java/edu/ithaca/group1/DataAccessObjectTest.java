@@ -205,8 +205,8 @@ class DataAccessObjectTest {
     	
     	DAO.deleteUser("10001");
     	DAO.deleteUser("10002");
-        assertEquals(null, DAO.getUserById("10001"));
-        assertEquals(null, DAO.getUserById("10002"));
+        assertEquals("10001", DAO.getUserById("10001"));
+        assertEquals("10002", DAO.getUserById("10002"));
         assertEquals("10000", DAO.getUserById("10000").getId());
         //assertEquals("10006", DAO.getUserById("10006").getId());
 
