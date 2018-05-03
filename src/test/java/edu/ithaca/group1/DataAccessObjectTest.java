@@ -203,8 +203,9 @@ class DataAccessObjectTest {
     @Test
     void deleteUser() {
     	User user = new User("10008","Tina Fey", "Writing");
-    	User user = new User("10007","Michael", "Security");
+    	User user2 = new User("10007","Michael", "Security");
     	DAO.deleteUser(user);
+    	DAO.deleteUser(user2);
         assertEquals(null, DAO.getUserById("10008"));
         assertEquals(null, DAO.getUserById("10007"));
     }
