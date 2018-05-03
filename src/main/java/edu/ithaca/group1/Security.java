@@ -12,7 +12,7 @@ public class Security extends State{
     public void run()
     {
         int selection = -1;
-        while(selection != 4) {
+        while(selection != 5) {
             super.myConsole.listOptions(menuOptions);
             selection = super.myConsole.getInputOption(menuOptions);
             branchApp(selection);
@@ -27,19 +27,19 @@ public class Security extends State{
     public void branchApp(int option)
     {
         switch(option){
-            case 0:
+            case 1:
                 viewPendingRequests();
                 break;
-            case 1:
+            case 2:
                 approveRequest();
                 break;
-            case 2:
+            case 3:
                 denyRequest();
                 break;
-            case 3:
+            case 4:
                 printDoorHistory();
                 break;
-            case 4:
+            case 5:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);

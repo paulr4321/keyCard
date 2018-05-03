@@ -20,7 +20,7 @@ public class Console {
         System.out.println("\nSelect an option:\n");
 
         for (int i = 0; i < listOfOptions.length; i++) {
-            System.out.println(i + " : " + listOfOptions[i]);
+            System.out.println((i + 1) + " : " + listOfOptions[i]);
         }
     }
 
@@ -49,7 +49,7 @@ public class Console {
             }
 
             try {
-                System.out.println("Option [" + listOfOptions[input] + "] was selected\n" );
+                System.out.println("Option [" + listOfOptions[input - 1] + "] was selected\n" );
             } catch (ArrayIndexOutOfBoundsException e){
                 valid = false;
                 System.out.println("Invalid input, please try again.\n");

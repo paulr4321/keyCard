@@ -12,7 +12,7 @@ public class Application extends State {
      */
     public void run(){
         int selection = -1;
-        while(selection != 2) {
+        while(selection != 3) {
             super.myConsole.listOptions(menuOptions);
             selection = super.myConsole.getInputOption(menuOptions);
             branchApp(selection);
@@ -26,16 +26,16 @@ public class Application extends State {
      */
     public void branchApp(int option){
         switch(option){
-            case 0:
+            case 1:
                 System.out.println("Displaying available doors...");
                 myConsole.printAllDoors(myDAO.getAllDoors());
                 System.out.println("\n");
                 break;
-            case 1:
+            case 2:
                 System.out.println("Submit a new application...");
                 newApp();
                 break;
-            case 2:
+            case 3:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);

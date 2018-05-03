@@ -15,7 +15,7 @@ public class Manager extends State {
     public void run()
     {
         int selection = -1;
-        while(selection != 7){
+        while(selection != 8){
             super.myConsole.listOptions(menuOptions);
             selection = super.myConsole.getInputOption(menuOptions);
             branchApp(selection);
@@ -29,28 +29,28 @@ public class Manager extends State {
     public void branchApp(int option)
     {
         switch(option){
-            case 0:
+            case 1:
                 viewApprovedRequests();
                 break;
-            case 1:
+            case 2:
                 viewAllUsers();
                 break;
-            case 2:
+            case 3:
                 viewAllDoors();
                 break;
-            case 3:
+            case 4:
                 addUser();
                 break;
-            case 4:
+            case 5:
                 addDoor();
                 break;
-            case 5:
+            case 6:
                 addPermission();
                 break;
-            case 6:
+            case 7:
                 denyPermission();
                 break;
-            case 7:
+            case 8:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);

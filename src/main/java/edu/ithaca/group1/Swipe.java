@@ -16,7 +16,7 @@ public class Swipe extends State {
      */
     public void run(){
         int userSelection = -1;
-        while (userSelection != 2){
+        while (userSelection != 3){
             super.myConsole.listOptions(options);
             userSelection = super.myConsole.getInputOption(options);
             branchApp(userSelection);
@@ -32,14 +32,14 @@ public class Swipe extends State {
     public void branchApp(int option){
 
         switch(option){
-            case 0:
+            case 1:
                 boolean temp = authorizeSwipe();
                 break;
-            case 1:
+            case 2:
                 System.out.println("Opening Door History...");
                 doorHistory();
                 break;
-            case 2:
+            case 3:
                 System.out.println("Returning to main menu...");
                 super.setCompleted(true);
                 super.setNextState(StateStatus.MAINMENU);
