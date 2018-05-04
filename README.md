@@ -45,3 +45,4 @@
 
 <h4>Sprint 3:</h4> Implemented specialized functionality to multiple views as well as integrating swiping simulation into the system. <br>
 <a href="https://drive.google.com/drive/folders/1VYipcm4iTbMyvkNZOVqdHhZtQQf6Zr-3" target="_blank">Diagrams</a> <br>
+<a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Retrospective Agenda and Notes</a> <br>
