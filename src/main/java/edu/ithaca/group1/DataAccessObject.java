@@ -328,7 +328,7 @@ public class DataAccessObject {
      */
     public void addSwipeRecord(String userId, String doorId, LocalDateTime date, boolean result)
     {
-        appendToFile(swipeRecordDataPath, new String[]{doorId, userId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
+        appendToFile(swipeRecordDataPath, new String[]{userId, doorId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
     }
 
     /**
@@ -418,7 +418,8 @@ public class DataAccessObject {
     {
         ArrayList<Record> records = getAllSwipeRecords();
         ArrayList<Record> toReturn = new ArrayList<>();
-        for (int i = 0; i < records.size(); i++) {
+        for (int i = 0; i < records.size(); i++)
+        {
             if (records.get(i).getDoorId().equals(doorId))
             {
                 toReturn.add(records.get(i));

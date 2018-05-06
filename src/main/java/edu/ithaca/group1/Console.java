@@ -1,5 +1,6 @@
 package edu.ithaca.group1;
 
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -129,6 +130,13 @@ public class Console {
         }
     }
 
-
+    public void printSwipeRecords(ArrayList<Record> list)
+    {
+        System.out.println("\n");
+        for (int i = 0; i < list.size(); i++) {
+            Record rec = list.get(i);
+            System.out.println("user: " + rec.getUserId() + ", Time: " + rec.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME) + ", Result: " + (rec.getOutcome() ? "granted" : "denied"));
+        }
+    }
 
 }
