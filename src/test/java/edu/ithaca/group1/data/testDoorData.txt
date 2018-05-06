@@ -1,5 +1,5 @@
 #13
-2
-5
-8
-12
+2%Health
+5%Health
+8%Science
+12%Music
