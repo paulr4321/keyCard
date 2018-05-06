@@ -285,14 +285,14 @@ public class DataAccessObject {
                 DateTimeFormatter formatter = DateTimeFormatter.ISO_DATE_TIME;
                 LocalDateTime dateTime = LocalDateTime.parse(str, formatter);
 
-                swipeRecords.add(new Record(fields[0], fields[1], dateTime, Boolean.parseBoolean(fields[3])));
+                swipeRecords.add(new Record(fields[1], fields[2], dateTime, Boolean.parseBoolean(fields[4])));
             }
             return swipeRecords;
     }
 
     /**
      * Saves the permission to persistent data. DOES NOT handle adding the user to the door's user list.
-     * However, the next time a DataAccessObject is instantiated that permission will be present
+     * However, the next time the specified door is requested the permission will be present
      *
      * @param userId id of the user being granted permission
      * @param doorId id of the door being granted permission to
@@ -328,7 +328,7 @@ public class DataAccessObject {
      */
     public void addSwipeRecord(String userId, String doorId, LocalDateTime date, boolean result)
     {
-        appendToFile(swipeRecordDataPath, new String[]{doorId, userId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
+        appendToFile(swipeRecordDataPath, new String[]{userId, doorId, date.format(DateTimeFormatter.ISO_DATE_TIME), Boolean.toString(result)});
     }
 
     /**
@@ -418,7 +418,8 @@ public class DataAccessObject {
     {
         ArrayList<Record> records = getAllSwipeRecords();
         ArrayList<Record> toReturn = new ArrayList<>();
-        for (int i = 0; i < records.size(); i++) {
+        for (int i = 0; i < records.size(); i++)
+        {
             if (records.get(i).getDoorId().equals(doorId))
             {
                 toReturn.add(records.get(i));

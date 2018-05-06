@@ -84,11 +84,8 @@ public class Security extends State{
         {
             ArrayList<Record> records = myDAO.getRecordsByDoor(doorId);
             if (records.size() > 0) {
-                System.out.println("\nDoor history for door" + door.getID() + ":\n");
-                for (int i = 0; i < records.size(); i++) {
-                    Record rec = records.get(i);
-                    System.out.println("user: " + rec.getUserId() + ", Time: " + rec.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME) + ", Result: " + (rec.getOutcome() ? "granted" : "denied"));
-                }
+                System.out.println("\nDoor history for door " + door.getID() + ":");
+                myConsole.printSwipeRecords(records);
             } else {
                 System.out.println("No Records for this door.");
             }

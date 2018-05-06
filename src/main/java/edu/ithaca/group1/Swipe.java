@@ -53,27 +53,23 @@ public class Swipe extends State {
      */
     public void doorHistory(){
 
-        String doorId;
-        // checks for valid door id
-        while (true) {
+        System.out.println("Enter the door ID:");
+        String doorId = myConsole.getInputString();
+        Door door = myDAO.getDoorById(doorId);
 
-            myConsole.printAllDoors(myDAO.getAllDoors());
-
-            System.out.println("Enter Door ID");
-            doorId = myConsole.getInputString();
-
-            if (myDAO.getDoorById(doorId) != null) {
-                break;
+        if (door != null)
+        {
+            ArrayList<Record> records = myDAO.getRecordsByDoor(doorId);
+            if (records.size() > 0) {
+                System.out.println("\nDoor history for door " + door.getID() + ":");
+                myConsole.printSwipeRecords(records);
+            } else {
+                System.out.println("No Records for this door.");
             }
-            System.out.println("Invalid Door ID.. ");
         }
-
-        ArrayList<Record> doorRecords = myDAO.getRecordsByDoor(doorId);
-
-        for (int i = 0; i < doorRecords.size(); i++) {
-            System.out.println("User ID: " + doorRecords.get(i).getUserId());
-            System.out.println("Time Stamp: " + doorRecords.get(i).getTimestamp().toString());
-            System.out.println("Access Granted?: " + doorRecords.get(i).getOutcome());
+        else
+        {
+            System.out.println("No door found with ID: "+doorId);
         }
     }
 
@@ -89,13 +85,15 @@ public class Swipe extends State {
         myConsole.printAllDoors(myDoors);
         String userID;
         String doorID;
+        User user;
+        Door door;
 
         // checks for valid user id
         while (true) {
             System.out.println("Enter User ID");
             userID = myConsole.getInputString();
-
-            if (myDAO.getUserById(userID) != null) {
+            user = myDAO.getUserById(userID);
+            if (user != null) {
                 break;
             }
             System.out.println("Invalid User ID.. ");
@@ -105,46 +103,22 @@ public class Swipe extends State {
         while (true) {
             System.out.println("Enter Door ID");
             doorID = myConsole.getInputString();
-
-            if (myDAO.getDoorById(doorID) != null) {
+            door = myDAO.getDoorById(doorID);
+            if (door != null) {
                 break;
             }
             System.out.println("Invalid Door ID.. ");
         }
 
 
-        ArrayList<Door> myDoorList = super.myDAO.getAllDoors();
-
-        for (int i = 0; i < myDoorList.size(); i++) {
-
-            if (myDoorList.get(i).idDoor.equals(doorID)) {
-
-                ArrayList<User> myDoorUsers = myDoorList.get(i).list;
-
-                for (int j = 0; j < myDoorUsers.size(); j++){
-
-                    if (myDoorUsers.get(j).getId().equals(userID)) {
-
-                        System.out.println("Access Granted");
-                        authStatus = true;
-
-                        // create local date time of now
-
-                        myDAO.addSwipeRecord(userID, doorID, LocalDateTime.now(), authStatus);
-
-                        return authStatus;
-                    }
-                }
-            }
-        }
-
-        if (!authStatus) {
-            System.out.println("Access Denied");
-            System.out.println("Returning to main menu...");
+        try
+        {
+            authStatus = door.checkUserAccess(user.getId());
             myDAO.addSwipeRecord(userID, doorID, LocalDateTime.now(), authStatus);
-            super.setCompleted(true);
-            super.setNextState(StateStatus.MAINMENU);
+            System.out.println(authStatus ? "ACCESS GRANTED" : "ACCESS DENIED");
         }
+        catch (Exception e){}
+
         return authStatus;
     }
 }
