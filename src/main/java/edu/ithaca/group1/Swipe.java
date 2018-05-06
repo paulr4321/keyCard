@@ -57,6 +57,8 @@ public class Swipe extends State {
         // checks for valid door id
         while (true) {
 
+            myConsole.printAllDoors(myDAO.getAllDoors());
+
             System.out.println("Enter Door ID");
             doorId = myConsole.getInputString();
 

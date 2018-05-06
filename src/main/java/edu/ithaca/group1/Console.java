@@ -93,6 +93,7 @@ public class Console {
      */
     public void printRequests(ArrayList<Request> list)
     {
+        System.out.println("\n");
 
         //TODO: Print User Status
 
@@ -110,6 +111,7 @@ public class Console {
      */
     public void printAllDoors(ArrayList<Door> list)
     {
+        System.out.println("\n");
         for (int i = 0; i < list.size(); i++) {
             System.out.println("Door: " + list.get(i).getID() + " [" + list.get(i).getDepartment() + "] ");
         }
@@ -121,6 +123,7 @@ public class Console {
      */
     public void printAllUsers(ArrayList<User> list)
     {
+        System.out.println("\n");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getId() + " : " + list.get(i).getName() + " [" + list.get(i).getDepartment() + "]");
         }
