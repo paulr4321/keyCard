@@ -104,7 +104,10 @@ public class Security extends State{
      */
     public void approveRequest()
     {
-        System.out.println("Enter the request ID");
+
+        viewPendingRequests();
+
+        System.out.println("\nEnter the request ID");
         String requestId = myConsole.getInputString();
         Request req = myDAO.getRequestById(requestId);
         if (req != null)
@@ -130,7 +133,10 @@ public class Security extends State{
      */
     public void denyRequest()
     {
-        System.out.println("Enter the request ID");
+
+        viewPendingRequests();
+
+        System.out.println("\nEnter the request ID");
         String requestId = myConsole.getInputString();
         Request req = myDAO.getRequestById(requestId);
         if (req != null)
