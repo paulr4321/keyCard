@@ -19,6 +19,7 @@ class DataAccessObjectTest {
         DAO.setUserDataPath("src/test/java/edu/ithaca/group1/data/testUserData.txt");
         DAO.setPermissionDataPath("src/test/java/edu/ithaca/group1/data/testPermissionData.txt");
         DAO.setRequestDataPath("src/test/java/edu/ithaca/group1/data/testRequestData.txt");
+        DAO.setSwipeRecordDataPath("src/test/java/edu/ithaca/group1/data/testSwipeRecordData.txt");
         try {
             //reset door data file
             File doors = new File("src/test/java/edu/ithaca/group1/data/testDoorData.txt");
@@ -52,6 +53,16 @@ class DataAccessObjectTest {
             writer.write("#3\n" +
                     "1%10000%1%NEW\n" +
                     "2%10001%8%SECURITY_CLEARED");
+            writer.close();
+
+            //reset swipeRecord data file
+            File swipeRecords = new File("src/test/java/edu/ithaca/group1/data/testSwipeRecordData.txt");
+            writer = new FileWriter(swipeRecords, false);
+            writer.write("#4\n"+
+                    "1%10002%1%2018-05-06T15:42:28.875%false\n"+
+                    "2%10000%1%2018-05-06T15:48:55.454%true\n"+
+                    "3%10002%1%2018-05-06T16:08:46.848%false\n"
+            );
             writer.close();
         }
         catch (Exception e){}
@@ -205,8 +216,15 @@ class DataAccessObjectTest {
     }
 
     @Test
-    void addSwipeRecord()
+    void getRecordsByDoor()
     {
+        ArrayList<Record> records = DAO.getRecordsByDoor("1");
+        assertEquals(3, records.size());
+        assertEquals(false, records.get(0).getOutcome());
+        assertEquals(true, records.get(1).getOutcome());
+        assertEquals(false, records.get(2).getOutcome());
+        assertEquals("10002", records.get(0).getUserId());
 
     }
+
 }
