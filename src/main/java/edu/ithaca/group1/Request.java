@@ -6,6 +6,13 @@ public class Request {
     private String doorId;
     private RequestStatus status;
 
+    /**
+     * Request constructor
+     * @param id id of the request
+     * @param userId id of the user
+     * @param doorId id of the door
+     * @param status the status of the request
+     */
     public Request(String id, String userId, String doorId, RequestStatus status)
     {
         this.id = id;
@@ -14,6 +21,12 @@ public class Request {
         this.status = status;
     }
 
+    /**
+     * Request Constructor
+     * @param id id of the request
+     * @param userId id of the user
+     * @param doorId id of the door
+     */
     public Request(String id, String userId, String doorId)
     {
         this.id = id;

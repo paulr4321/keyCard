@@ -414,6 +414,11 @@ public class DataAccessObject {
         return null;
     }
 
+    /**
+     * Gets a specific doorId and returns the records associated with that door
+     * @param doorId id of the requested door
+     * @return ArrayList of Records associate with the door
+     */
     public ArrayList<Record> getRecordsByDoor(String doorId)
     {
         ArrayList<Record> records = getAllSwipeRecords();
