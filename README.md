@@ -11,7 +11,7 @@
 
 <h3>Quick Start Guide</h3>
 
-Navigate to <b>"Main.java"</b> and run the program. Once on the main menu, select perspective
+Navigate to <b>"Main.java"</b> and run the program. Once on the main menu, select a perspective
 in which to view the application from (Security Menu, Application Menu, Manager Menu, Swipe Menu).
 <br>
 <b>Note:</b> Application must be in main menu in order to quit.
