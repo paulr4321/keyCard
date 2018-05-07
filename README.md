@@ -2,6 +2,9 @@
 
 # keyCard
 
+<h3> Final Deliverables </h3>
+<a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Retrospective Agenda and Notes</a> <br>
+
 <h3>Professor: Toby Dragon</h3>
 
 <h3>Developers:</h3>
