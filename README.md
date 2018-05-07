@@ -9,9 +9,12 @@
 <a href="https://drive.google.com/drive/folders/1VYipcm4iTbMyvkNZOVqdHhZtQQf6Zr-3" target="_blank">Final Diagrams</a> <br>
 <a href="">Javadocs Link (Paul add the link and remove this note)</a> <br>
 
-<h3> Quick Start Guide </h3>
+<h3>Quick Start Guide</h3>
 
--- Fern add stuff here, all stuff you need to include is in the "final deliverables" assignment --
+Navigate to <b>"Main.java"</b> and run the program. Once on the main menu, select perspective
+in which to view the application from (Security Menu, Application Menu, Manager Menu, Swipe Menu).
+<br>
+<b>Note:</b> Application must be in main menu in order to quit.
 
 <h3>Professor: Toby Dragon</h3>
 
