@@ -3,7 +3,8 @@
 # keyCard
 
 <h3> Final Deliverables </h3>
-<a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Retrospective Agenda and Notes</a> <br>
+<a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Final Retrospective</a> <br>
+<a href="https://drive.google.com/drive/folders/1VYipcm4iTbMyvkNZOVqdHhZtQQf6Zr-3" target="_blank">Final Diagrams</a> <br>
 
 <h3>Professor: Toby Dragon</h3>
 
