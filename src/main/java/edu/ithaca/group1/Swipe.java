@@ -36,7 +36,6 @@ public class Swipe extends State {
                 boolean temp = authorizeSwipe();
                 break;
             case 2:
-                System.out.println("Opening Door History...");
                 doorHistory();
                 break;
             case 3:

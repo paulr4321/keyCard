@@ -135,7 +135,7 @@ public class Console {
         System.out.println("\n");
         for (int i = 0; i < list.size(); i++) {
             Record rec = list.get(i);
-            System.out.println("user: " + rec.getUserId() + ", Time: " + rec.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME) + ", Result: " + (rec.getOutcome() ? "granted" : "denied"));
+            System.out.println("user: " + rec.getUserId() + ", Time: " + rec.getTimestamp().format(DateTimeFormatter.ISO_DATE_TIME) + ", Result: Access" + (rec.getOutcome() ? "Granted" : "Denied"));
         }
     }
 
