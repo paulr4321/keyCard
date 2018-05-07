@@ -3,8 +3,15 @@
 # keyCard
 
 <h3> Final Deliverables </h3>
+
+<a href="https://docs.google.com/document/d/1LjkzfjKhdIN14BgzggfcQQPC5W1GYXOi0ZTB1sEKCJM/edit?usp=sharing">Testing Plan</a> <br>
 <a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Final Retrospective</a> <br>
 <a href="https://drive.google.com/drive/folders/1VYipcm4iTbMyvkNZOVqdHhZtQQf6Zr-3" target="_blank">Final Diagrams</a> <br>
+<a href="">Javadocs Link (Paul add the link and remove this note)</a> <br>
+
+<h3> Quick Start Guide </h3>
+
+-- Fern add stuff here, all stuff you need to include is in the "final deliverables" assignment --
 
 <h3>Professor: Toby Dragon</h3>
 
