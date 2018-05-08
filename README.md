@@ -7,7 +7,7 @@
 <a href="https://docs.google.com/document/d/1LjkzfjKhdIN14BgzggfcQQPC5W1GYXOi0ZTB1sEKCJM/edit?usp=sharing">Testing Plan</a> <br>
 <a href="https://docs.google.com/document/d/1rjryRx4Jz7yd7Djz8XQqli0mmcw_d5RPO905zWnB_vU/edit?usp=sharing" target="_blank">Final Retrospective</a> <br>
 <a href="https://drive.google.com/open?id=1EDkZycf_1BW1ZnJm8VLXCtqtDzGzQrTp">Final Diagrams</a> <br>
-<a href="https://paulr4321.github.io/keyCard/"> Java Docs</a>J <br>
+<a href="https://paulr4321.github.io/keyCard/"> Java Docs</a> <br>
 
 <h3>Quick Start Guide</h3>
 
